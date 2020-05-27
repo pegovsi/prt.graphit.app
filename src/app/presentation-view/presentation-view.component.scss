@@ -1,0 +1,27 @@
+.container-main {
+  margin-top: 5%;
+  margin-left: 5%;
+}
+
+#grid {
+  display: grid;
+  grid-template-rows: 2.5fr 0.5fr 1fr;
+  grid-template-columns: 0.6fr 1fr 1fr;
+  grid-gap: .9vw;
+}
+#grid > div {
+  /*font-size: 4vw;*/
+  padding: .0em;
+
+  /*background: gold;*/
+  text-align: center;
+}
+
+.logo-txt {
+  color: #fff;
+  font-size: 32px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+

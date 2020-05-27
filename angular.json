@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "graphit"
+    }
+  },
+  "defaultProject": "graphit",
+  "cli": {
+    "analytics": "02b126fa-4b3c-4579-9cd8-d9e80b9a4f1a"
+  }
 }
