@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-aside',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AsideComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
+  isToggled:boolean;
   ngOnInit(): void {
+    this.isToggled = false;
+  }
+
+  onToggled(){
+    this.isToggled = !this.isToggled;
   }
 
 }

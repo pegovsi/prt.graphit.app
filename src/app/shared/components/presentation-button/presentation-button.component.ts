@@ -20,7 +20,12 @@ export class PresentationButtonComponent implements OnInit {
   }
 
   onClick(){
-    this.router.navigate(['/'+this.module, this.path]);
+    console.log(this.module);
+    if(this.module === '' || this.module === undefined){
+      this.router.navigate(['/'+this.path]);
+    }else{
+      this.router.navigate(['/'+this.module, this.path]);
+    }
   }
 
 }

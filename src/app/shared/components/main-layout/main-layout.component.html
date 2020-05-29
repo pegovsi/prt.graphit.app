@@ -1,11 +1,25 @@
-<div>
-  <div class="d-flex flex-row flex-column-fluid page">
-    <app-aside></app-aside>
-
-    <div class="d-flex flex-column flex-row-fluid wrapper">
+<div id="wrapper">
+  <app-aside></app-aside>
+  <div id="content-wrapper" class="d-flex flex-column">
+    <div id="content">
       <app-header></app-header>
-      <router-outlet></router-outlet>
+
+      <!-- Begin Page Content -->
+      <div class="container-fluid">
+        <router-outlet></router-outlet>
+      </div>
+      <!-- /.container-fluid -->
+
     </div>
+    <!-- Footer -->
+    <footer class="sticky-footer bg-white">
+      <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+          <span>Copyright &copy; Your Website 2019</span>
+        </div>
+      </div>
+    </footer>
+    <!-- End of Footer -->
   </div>
 </div>
 

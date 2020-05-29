@@ -1,1 +1,54 @@
-<p>vehicle-home works!</p>
+<!-- Page Heading -->
+<h1 class="h3 mb-4 text-gray-800">Учёт ВВТ</h1>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <!--<h6 class="m-0 font-weight-bold text-primary">+ Добавить</h6>-->
+    <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">
+      <i class="fas fa-fw fa-plus-circle"></i>
+      <span>Добавить</span>
+    </a>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+        <tr>
+          <th>Наименование</th>
+          <th>Номер шасси</th>
+          <th>Номер производителя</th>
+          <th>Номер регистрации</th>
+          <th>Город</th>
+          <th>Дивизия</th>
+          <th>Состояние</th>
+        </tr>
+        </thead>
+        <tfoot>
+        <tr>
+          <th>Наименование</th>
+          <th>Номер шасси</th>
+          <th>Номер производителя</th>
+          <th>Номер регистрации</th>
+          <th>Город</th>
+          <th>Дивизия</th>
+          <th>Состояние</th>
+        </tr>
+        </tfoot>
+        <tbody>
+        <tr  *ngFor="let vehicle of vehicles">
+          <td>{{vehicle.name}}</td>
+          <td>{{vehicle.vehicleNomberChassis}}</td>
+          <td>{{vehicle.vehicleNomberFactory}}</td>
+          <td>{{vehicle.vehicleNomberRegister}}</td>
+          <td>{{vehicle.city.name}}</td>
+          <td>{{vehicle.division.name}}</td>
+          <td><span [ngStyle]="
+          {'color': vehicle.condition.name==='Исправен'?'#59d749':'#D61B1B'}"
+            >{{vehicle.condition.name}}</span></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

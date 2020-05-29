@@ -2,13 +2,25 @@ import { NgModule } from '@angular/core';
 import {Routes, RouterModule, PreloadAllModules} from '@angular/router';
 import {PresentationViewComponent} from "./presentation-view/presentation-view.component";
 import {PresentationLayoutComponent} from "./shared/components/presentation-layout/presentation-layout.component";
+import {LoginLayoutComponent} from "./shared/components/login-layout/login-layout.component";
+import {LoginComponent} from "./login/login.component";
+import {MainLayoutComponent} from "./shared/components/main-layout/main-layout.component";
+import {DashboardComponent} from "./dashboard/dashboard.component";
 
 
 const routes: Routes = [{
-  path:'', component: PresentationLayoutComponent, children:[
+  path:'', component: MainLayoutComponent, children:[
     { path:'', redirectTo:'/', pathMatch:'full' },
-    { path:'', component: PresentationViewComponent }
+    { path:'dashboard', component: DashboardComponent }
+  ]
+},
+  {
+  path:'presentation', component: PresentationLayoutComponent, children:[
+    { path:'presentation', redirectTo:'/', pathMatch:'full' },
+    { path:'presentation', component: PresentationViewComponent }
 ]},{
+    path: 'login', component: LoginLayoutComponent
+},{
    path: 'vehicle', loadChildren: ()=> import('./vehicle/vehicle.module').then(x=>x.VehicleModule)
 }];
 /*'./app/vehicle/vehicle.module#VehicleModule'*/

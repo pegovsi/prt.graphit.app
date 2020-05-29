@@ -5,6 +5,8 @@ import { VehicleHomeComponent } from './vehicle-home/vehicle-home.component';
 import {MainLayoutComponent} from "../shared/components/main-layout/main-layout.component";
 import {AsideComponent} from "../aside/aside.component";
 import {HeaderComponent} from "../header/header.component";
+import {SharedModule} from "../shared/shared.module";
+import {HttpServiceService} from "../services/http-service.service";
 
 const routes: Routes =[{
     path: '', component: MainLayoutComponent, children: [
@@ -21,8 +23,12 @@ const routes: Routes =[{
   ],
   imports: [
     CommonModule,
+    SharedModule,
     RouterModule.forChild(routes)
   ],
-  exports:[RouterModule]
+  exports:[RouterModule],
+  providers:[
+    HttpServiceService
+  ]
 })
 export class VehicleModule { }
