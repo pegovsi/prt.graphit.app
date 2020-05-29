@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {NgModule, Provider} from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,8 +10,15 @@ import { LoginComponent } from './login/login.component';
 import { LoginLayoutComponent } from './shared/components/login-layout/login-layout.component';
 import {SharedModule} from "./shared/shared.module";
 import { DashboardComponent } from './dashboard/dashboard.component';
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {AuthInterceptor} from "./auth.interceptor";
+import {ReactiveFormsModule} from "@angular/forms";
 
-
+const INTERCEPTOR_PROVIDER: Provider = {
+  provide: HTTP_INTERCEPTORS,
+  multi: true,
+  useClass: AuthInterceptor
+};
 
 @NgModule({
   declarations: [
@@ -26,9 +33,12 @@ import { DashboardComponent } from './dashboard/dashboard.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    INTERCEPTOR_PROVIDER
+  ],
   exports: [
   ],
   bootstrap: [AppComponent]

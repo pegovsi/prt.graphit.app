@@ -6,17 +6,18 @@ import {LoginLayoutComponent} from "./shared/components/login-layout/login-layou
 import {LoginComponent} from "./login/login.component";
 import {MainLayoutComponent} from "./shared/components/main-layout/main-layout.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
+import {AuthGuard} from "./services/auth.guard";
 
 
 const routes: Routes = [{
-  path:'', component: MainLayoutComponent, children:[
+  path:'', component: MainLayoutComponent, canActivate:[AuthGuard], children:[
     { path:'', redirectTo:'/', pathMatch:'full' },
     { path:'dashboard', component: DashboardComponent }
   ]
 },
   {
-  path:'presentation', component: PresentationLayoutComponent, children:[
-    { path:'presentation', redirectTo:'/', pathMatch:'full' },
+  path:'presentation', component: PresentationLayoutComponent,canActivate:[AuthGuard], children:[
+    { path:'presentation', redirectTo:'presentation', pathMatch:'full' },
     { path:'presentation', component: PresentationViewComponent }
 ]},{
     path: 'login', component: LoginLayoutComponent
