@@ -1,0 +1,36 @@
+<div *ngIf="vehicle$ | async as vehicle; else loading">
+  <div class="row">
+    <div class="col-lg-6">
+
+      <!-- Default Card Example -->
+      <div class="card mb-4">
+        <div class="card-header">
+          ВВТ: {{vehicle.name}}
+        </div>
+        <div class="card-body">
+          <div>
+            {{vehicle.name}}
+          </div>
+          <div>
+            {{vehicle.vehicleModel.name}}
+          </div>
+          <div>
+            {{vehicle.city.name}}
+          </div>
+          <div>
+            {{vehicle.brigade.name}}
+          </div>
+          <div>
+            {{vehicle.condition.name}}
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<ng-template #loading>
+  <p class="text-center">Загружаю пост...</p>
+</ng-template>

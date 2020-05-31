@@ -7,6 +7,12 @@ import {AlertService} from "../services/alert.service";
 import {AuthGuard} from "../services/auth.guard";
 import {AuthInterceptor} from "../auth.interceptor";
 import {JwtHelper} from "../services/JwtHelper";
+import {AsideComponent} from "../aside/aside.component";
+import {HeaderComponent} from "../header/header.component";
+import {MainLayoutComponent} from "./components/main-layout/main-layout.component";
+import {ReactiveFormsModule} from "@angular/forms";
+import { AppRoutingModule } from '../app-routing.module';
+import {RouterModule} from "@angular/router";
 
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
@@ -16,15 +22,24 @@ const INTERCEPTOR_PROVIDER: Provider = {
 
 @NgModule({
   declarations: [
-    AlertComponent
+    AlertComponent,
+    MainLayoutComponent,
+    AsideComponent,
+    HeaderComponent
   ],
   imports: [
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule
   ],
   exports: [
+
+    MainLayoutComponent,
     HttpClientModule,
-    AlertComponent
+    AlertComponent,
+    AsideComponent,
+    HeaderComponent,
+
   ],
   providers:[
     INTERCEPTOR_PROVIDER,

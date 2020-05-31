@@ -22,7 +22,9 @@ const routes: Routes = [{
 ]},{
     path: 'login', component: LoginLayoutComponent
 },{
-   path: 'vehicle', loadChildren: ()=> import('./vehicle/vehicle.module').then(x=>x.VehicleModule)
+   path: 'vehicle', loadChildren:  ()=> import('./vehicle/vehicle.module').then(x=>x.VehicleModule)
+},{
+   path: 'settings', loadChildren: ()=> import('./modules/settings/settings.module').then(x=>x.SettingsModule)
 }];
 /*'./app/vehicle/vehicle.module#VehicleModule'*/
 @NgModule({

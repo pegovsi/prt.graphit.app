@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import {NgModule, Provider} from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PresentationViewComponent } from './presentation-view/presentation-view.component';
@@ -13,6 +12,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {AuthInterceptor} from "./auth.interceptor";
 import {ReactiveFormsModule} from "@angular/forms";
+import {CommonModule} from "@angular/common";
 
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
