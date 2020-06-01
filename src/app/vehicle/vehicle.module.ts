@@ -10,11 +10,14 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {AsideComponent} from "../aside/aside.component";
 import {HeaderComponent} from "../header/header.component";
 import { VehicleDetailsComponent } from './vehicle-details/vehicle-details.component';
+import {MapVehiclesComponent} from "../map-vehicles/map-vehicles.component";
+import {AngularSplitModule} from "angular-split";
 
 
 const routes: Routes =[{
     path: '', component: MainLayoutComponent, children: [
-      {path: '', redirectTo: '/vehicle/vehicles', pathMatch: 'full'},
+      {path: '', redirectTo: '/vehicle/map', pathMatch: 'full'},
+      {path: 'map', component: MapVehiclesComponent, canActivate:[AuthGuard]},
       {path: 'vehicles', component: VehicleHomeComponent, canActivate:[AuthGuard]},
       {path: 'vehicle/:id/edit', component: VehicleDetailsComponent, canActivate:[AuthGuard]}
     ]
@@ -30,6 +33,7 @@ const routes: Routes =[{
   imports: [
     CommonModule,
     SharedModule,
+    AngularSplitModule.forRoot(),
     RouterModule.forChild(routes)
   ],
   exports:[RouterModule],

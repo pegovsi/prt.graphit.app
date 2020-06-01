@@ -13,6 +13,9 @@ import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {AuthInterceptor} from "./auth.interceptor";
 import {ReactiveFormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
+import { MapComponent } from './map/map.component';
+import { MapVehiclesComponent } from './map-vehicles/map-vehicles.component';
+import {AngularSplitModule} from "angular-split";
 
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
@@ -28,14 +31,17 @@ const INTERCEPTOR_PROVIDER: Provider = {
     PresentationButtonComponent,
     LoginComponent,
     LoginLayoutComponent,
-    DashboardComponent
+    DashboardComponent,
+    MapComponent,
+    MapVehiclesComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    SharedModule,
-    ReactiveFormsModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        SharedModule,
+        ReactiveFormsModule,
+        AngularSplitModule
+    ],
   providers: [
     INTERCEPTOR_PROVIDER
   ],
