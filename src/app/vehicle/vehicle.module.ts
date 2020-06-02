@@ -12,6 +12,8 @@ import {HeaderComponent} from "../header/header.component";
 import { VehicleDetailsComponent } from './vehicle-details/vehicle-details.component';
 import {MapVehiclesComponent} from "../map-vehicles/map-vehicles.component";
 import {AngularSplitModule} from "angular-split";
+import {ModalRefDirective} from "../directives/modalRef.directive";
+import {ModalComponent} from "../shared/components/modal/modal.component";
 
 
 const routes: Routes =[{
@@ -26,7 +28,8 @@ const routes: Routes =[{
   declarations: [
     /*MainLayoutComponent,*/
     VehicleHomeComponent,
-    VehicleDetailsComponent
+    VehicleDetailsComponent,
+
     /*AsideComponent,
     HeaderComponent*/
   ],

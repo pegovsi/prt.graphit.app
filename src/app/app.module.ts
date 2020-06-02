@@ -16,6 +16,8 @@ import {CommonModule} from "@angular/common";
 import { MapComponent } from './map/map.component';
 import { MapVehiclesComponent } from './map-vehicles/map-vehicles.component';
 import {AngularSplitModule} from "angular-split";
+import {ModalRefDirective} from "./directives/modalRef.directive";
+import {ModalComponent} from "./shared/components/modal/modal.component";
 
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,

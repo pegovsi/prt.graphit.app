@@ -1,4 +1,5 @@
 <app-alert></app-alert>
+<ng-template modalRef></ng-template>
 
 <div id="wrapper">
   <app-aside></app-aside>
@@ -17,7 +18,7 @@
     <footer class="sticky-footer bg-white">
       <div class="container my-auto">
         <div class="copyright text-center my-auto">
-          <span>Copyright &copy; Your Website 2019</span>
+          <span (click)="showModal()">Copyright &copy; Your Website 2019</span>
         </div>
       </div>
     </footer>

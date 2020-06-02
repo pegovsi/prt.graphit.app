@@ -13,6 +13,9 @@ import {MainLayoutComponent} from "./components/main-layout/main-layout.componen
 import {ReactiveFormsModule} from "@angular/forms";
 import { AppRoutingModule } from '../app-routing.module';
 import {RouterModule} from "@angular/router";
+import {ModalRefDirective} from "../directives/modalRef.directive";
+import { ModalComponent } from './components/modal/modal.component';
+import {ModalContainerRefDirective} from "../directives/modalContainerRef.directive";
 
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
@@ -25,7 +28,10 @@ const INTERCEPTOR_PROVIDER: Provider = {
     AlertComponent,
     MainLayoutComponent,
     AsideComponent,
-    HeaderComponent
+    HeaderComponent,
+    ModalComponent,
+    ModalRefDirective,
+    ModalContainerRefDirective
   ],
   imports: [
     CommonModule,
@@ -38,8 +44,7 @@ const INTERCEPTOR_PROVIDER: Provider = {
     HttpClientModule,
     AlertComponent,
     AsideComponent,
-    HeaderComponent,
-
+    HeaderComponent
   ],
   providers:[
     INTERCEPTOR_PROVIDER,
@@ -47,6 +52,7 @@ const INTERCEPTOR_PROVIDER: Provider = {
     AlertService,
     JwtHelper,
     AuthGuard
-  ]
+  ],
+  entryComponents: [ModalComponent]
 })
 export class SharedModule { }

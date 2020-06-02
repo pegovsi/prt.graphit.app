@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 import {HttpServiceService} from "../../services/http-service.service";
 import {Vehicle} from "../../models/Vehicle";
 import {Observable} from 'rxjs';
@@ -6,6 +6,9 @@ import {SearchVehicleByNameCommand} from "../../models/SearchVehicleByNameComman
 import {AlertService} from "../../services/alert.service";
 import {PageContext, VehiclePageFilter} from "../../models/pageContext";
 import {VehiclesCollectionViewModel} from "../../models/vehiclesCollectionViewModel";
+import {ModalRefDirective} from "../../directives/modalRef.directive";
+import {ModalComponent} from "../../shared/components/modal/modal.component";
+import {ModalPubSubService} from "../../services/modal-pub-sub.service";
 
 @Component({
   selector: 'app-vehicle-home',
@@ -20,14 +23,30 @@ export class VehicleHomeComponent implements OnInit {
   totalPages: Array<number>;
   currentPage:number;
 
+  //@ViewChild('modalRef', {static: false,  read: ViewContainerRef}) containerRef: ViewContainerRef;
+  //@ViewChild(ModalRefDirective, {static: false,  read: ViewContainerRef}) containerRef: ViewContainerRef;
+
   constructor(
     private httpClient: HttpServiceService,
-    private alertService: AlertService) { }
+    private alertService: AlertService,
+    private modalPubSubService: ModalPubSubService
+     ) { }
 
   ngOnInit(): void {
 
     this.getData(1, 12);
   }
+
+  // showModal(){
+  //   const modalFactory = this.resolver.resolveComponentFactory(ModalComponent);
+  //   this.containerRef.clear();
+  //
+  //   const component = this.containerRef.createComponent(modalFactory);
+  //   component.instance.title='sdgsdsd';
+  //   component.instance.close.subscribe(()=>{
+  //     this.containerRef.clear()
+  //   });
+  // }
 
   getData(pageIndex:number, pageSize:number){
     let command: PageContext<VehiclePageFilter> = {
@@ -75,4 +94,7 @@ export class VehicleHomeComponent implements OnInit {
     this.getData(event, 12);
   }
 
+  showModal(event) {
+    this.modalPubSubService.showDialogModal(event);
+  }
 }

@@ -1,0 +1,14 @@
+<div class="backdrop"></div>
+
+<div class="modal">
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h3>{{title}}</h3>
+    </div>
+    <div class="card-body">
+      <ng-template modalContainerRef></ng-template>
+    </div>
+  </div>
+
+  <button class="btn" (click)="close.emit()">Close</button>
+</div>

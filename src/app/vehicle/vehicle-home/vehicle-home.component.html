@@ -1,3 +1,4 @@
+
 <!-- Page Heading -->
 <h1 class="h3 mb-4 text-gray-800">Учёт ВВТ</h1>
 
@@ -38,7 +39,8 @@
         <tbody>
         <tr  *ngFor="let vehicle of vehicles">
           <td>
-            <a [routerLink]="['/vehicle', 'vehicle',vehicle.id, 'edit']">{{vehicle.name}}</a>
+<!--            <a [routerLink]="['/vehicle', 'vehicle',vehicle.id, 'edit']">{{vehicle.name}}</a>-->
+            <span (click)="showModal(vehicle.id)" >{{vehicle.name}}</span>
           </td>
           <td>{{vehicle.vehicleNomberChassis}}</td>
           <td>{{vehicle.vehicleNomberFactory}}</td>
