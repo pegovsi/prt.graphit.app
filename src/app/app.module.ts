@@ -18,6 +18,7 @@ import { MapVehiclesComponent } from './map-vehicles/map-vehicles.component';
 import {AngularSplitModule} from "angular-split";
 import {ModalRefDirective} from "./directives/modalRef.directive";
 import {ModalComponent} from "./shared/components/modal/modal.component";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
@@ -42,7 +43,8 @@ const INTERCEPTOR_PROVIDER: Provider = {
         AppRoutingModule,
         SharedModule,
         ReactiveFormsModule,
-        AngularSplitModule
+        AngularSplitModule,
+        BrowserAnimationsModule
     ],
   providers: [
     INTERCEPTOR_PROVIDER

@@ -14,18 +14,20 @@ export class VehicleDetailsComponent implements OnInit {
 
   @Input() vehicleId: string;
   vehicle$: Observable<Vehicle>;
+  myColor:string = '#ffc000';
+
   constructor(
     private route: ActivatedRoute,
     private httpClient: HttpServiceService) { }
 
   ngOnInit(): void {
-    // this.vehicle$ = this.route.params
-    //   .pipe(switchMap((params: Params) => {
-    //     return this.httpClient.getVehicleById(params['id']);
-    //   }));
+    this.vehicle$ = this.route.params
+      .pipe(switchMap((params: Params) => {
+        return this.httpClient.getVehicleById(params['id']);
+      }));
 
 
-     this.vehicle$ = this.httpClient.getVehicleById(this.vehicleId);
+     //this.vehicle$ = this.httpClient.getVehicleById(this.vehicleId);
   }
 
 }

@@ -1,32 +1,64 @@
 <div *ngIf="vehicle$ | async as vehicle; else loading">
   <div class="row">
-    <div class="col-lg-6">
-
+    <div class="col-lg-4">
       <!-- Default Card Example -->
       <div class="card mb-4">
+<!--        <div class="card-header">-->
+<!--          ВВТ: {{vehicle.name}}-->
+<!--        </div>-->
+        <div class="card-body">
+          <img src="assets/backgr.jpg" style="width: 490px;">
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+      <div class="card mb-6">
         <div class="card-header">
           ВВТ: {{vehicle.name}}
         </div>
         <div class="card-body">
-          <div>
-            {{vehicle.name}}
-          </div>
-          <div>
-            {{vehicle.vehicleModel.name}}
-          </div>
-          <div>
-            {{vehicle.city.name}}
-          </div>
-          <div>
-            {{vehicle.brigade.name}}
-          </div>
-          <div>
-            {{vehicle.condition.name}}
-          </div>
+          <mat-tab-group color="">
+            <mat-tab label="Основное">
+              <div>
+                Наименование: {{vehicle.name}}
+              </div>
+              <div>
+                Содель: {{vehicle.vehicleModel.name}}
+              </div>
+              <div>
+                Город: {{vehicle.city.name}}
+              </div>
+              <div>
+                Бригада: {{vehicle.brigade.name}}
+              </div>
+              <div>
+                Состояние: {{vehicle.condition.name}}
+              </div>
+            </mat-tab>
+            <mat-tab label="Запчасти">Запчасти</mat-tab>
+            <mat-tab label="История ремонтов">История ремонтов</mat-tab>
+            <mat-tab label="Экипаж">Экипаж</mat-tab>
+          </mat-tab-group>
         </div>
       </div>
-
     </div>
+
+    <div class="col-lg-4">
+      <div class="card mb-4">
+        <div class="card-header">
+          Документы
+        </div>
+        <div class="card-body">
+          <ul>
+            <li>
+              <a href="" >Схема.doc</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 

@@ -14,6 +14,7 @@ import {MapVehiclesComponent} from "../map-vehicles/map-vehicles.component";
 import {AngularSplitModule} from "angular-split";
 import {ModalRefDirective} from "../directives/modalRef.directive";
 import {ModalComponent} from "../shared/components/modal/modal.component";
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
 
 const routes: Routes =[{
@@ -33,12 +34,13 @@ const routes: Routes =[{
     /*AsideComponent,
     HeaderComponent*/
   ],
-  imports: [
-    CommonModule,
-    SharedModule,
-    AngularSplitModule.forRoot(),
-    RouterModule.forChild(routes)
-  ],
+    imports: [
+        CommonModule,
+        SharedModule,
+        AngularSplitModule.forRoot(),
+        RouterModule.forChild(routes),
+        NgbModule
+    ],
   exports:[RouterModule],
   providers:[
     HttpServiceService

@@ -16,6 +16,7 @@ import {RouterModule} from "@angular/router";
 import {ModalRefDirective} from "../directives/modalRef.directive";
 import { ModalComponent } from './components/modal/modal.component';
 import {ModalContainerRefDirective} from "../directives/modalContainerRef.directive";
+import {AngularMaterialModule} from "./angular-material.module";
 
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
@@ -36,7 +37,8 @@ const INTERCEPTOR_PROVIDER: Provider = {
   imports: [
     CommonModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
+    AngularMaterialModule
   ],
   exports: [
 
@@ -44,7 +46,8 @@ const INTERCEPTOR_PROVIDER: Provider = {
     HttpClientModule,
     AlertComponent,
     AsideComponent,
-    HeaderComponent
+    HeaderComponent,
+    AngularMaterialModule
   ],
   providers:[
     INTERCEPTOR_PROVIDER,
