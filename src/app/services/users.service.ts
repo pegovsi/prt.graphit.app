@@ -25,7 +25,7 @@ export class UsersService {
 
   getUsersPage(command: PageContext<UserPageFilter>):Observable<UsersCollectionViewModel<User[]>>{
     return this.client.post<UsersCollectionViewModel<User[]>>(
-      'http://localhost:5000/api/v1/users/page',
+      `${environment.api}/api/v1/users/page`,
       JSON.stringify(command),
       this.httpOptions)
       .pipe(

@@ -18,9 +18,16 @@ export interface Vehicle {
   division:Division,
   subdivision: Subdivision,
   brigade:Brigade,
-  condition:Condition
+  condition:Condition,
+  vehiclePictures:VehiclePictures[]
+
 }
 
+export interface VehiclePictures {
+  uri:string;
+  uriPreview:string;
+  base:boolean;
+}
 export interface City {
   id:string;
   name:string;

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import OlXYZ from 'ol/source/xyz';
 import XYZSource from 'ol/source/xyz';
 import TileLayer from 'ol/layer/tile';
+import {environment} from "../../environments/environment";
 
 declare var ol: any;
 
@@ -43,7 +44,7 @@ export class MapComponent implements OnInit {
       layers: [
         new ol.layer.Tile({
           source: new ol.source.XYZ({
-            url: 'http://localhost:5000/api/v1/map?z={z}&x={x}&y={y}'
+            url: `${environment.api}/api/v1/map?z={z}&x={x}&y={y}`
           })
         })
       ],
@@ -62,6 +63,13 @@ export class MapComponent implements OnInit {
       var lat = lonlat[1];
       alert(`lat: ${lat} long: ${lon}`);
     });
+
+    //lat: 55.53240844505305 long: 38.78578052290355
+    //lat: 55.73504754387426 long: 54.991395194071316
+    //lat: 52.18968548218041 long: 46.2921807603836
+    this.addPoint(55.53240844505305, 38.78578052290355);
+    this.addPoint(55.73504754387426, 54.991395194071316);
+    this.addPoint(52.18968548218041, 46.2921807603836);
   }
 
   setCenter() {
@@ -82,7 +90,7 @@ export class MapComponent implements OnInit {
           anchor: [0.5, 0.5],
           anchorXUnits: "fraction",
           anchorYUnits: "fraction",
-          src: "assets/img/my-icon.png"
+          src: "assets/location icon.png"
         })
       })
     });
