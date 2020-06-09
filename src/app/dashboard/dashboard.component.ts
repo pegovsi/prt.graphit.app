@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {HttpServiceService} from "../services/http-service.service";
+import {VehicleConditionDto} from "../models/vehicleConditionDto";
+import {VehiclesCountByCityDto} from "../models/VehiclesCountByCityDto";
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  vehicleCondition:VehicleConditionDto;
+
+  constructor(private httpClient: HttpServiceService) { }
 
   ngOnInit(): void {
+    this.httpClient.getVehicleCondition()
+      .subscribe(data => {
+        this.vehicleCondition = data;
+      });
   }
 
 }

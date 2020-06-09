@@ -4,7 +4,7 @@ import {Observable, Subject, throwError} from 'rxjs';
 import {catchError, retry, tap} from 'rxjs/operators';
 import {environment} from "../../environments/environment";
 import {IdentityCommand, IdentityResponse} from "../models/IdentityCommand";
-import {UsersCollectionViewModel, VehiclesCollectionViewModel} from "../models/vehiclesCollectionViewModel";
+import { UsersCollectionViewModel } from "../models/vehiclesCollectionViewModel";
 import {User} from "../models/user";
 import {Vehicle} from "../models/Vehicle";
 import {PageContext, UserPageFilter, VehiclePageFilter} from "../models/pageContext";

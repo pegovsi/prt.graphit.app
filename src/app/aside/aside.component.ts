@@ -16,7 +16,7 @@ export class AsideComponent implements OnInit {
   }
 
   onToggled(){
-    this.isToggled = !this.isToggled;
+   // this.isToggled = !this.isToggled;
   }
 
 }

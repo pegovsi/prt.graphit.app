@@ -11,7 +11,7 @@ import {AuthGuard} from "./services/auth.guard";
 
 const routes: Routes = [{
   path:'', component: MainLayoutComponent, canActivate:[AuthGuard], children:[
-    { path:'', redirectTo:'/', pathMatch:'full' },
+    { path:'', redirectTo:'/dashboard', pathMatch:'full' },
     { path:'dashboard', component: DashboardComponent }
   ]
 },
@@ -25,6 +25,8 @@ const routes: Routes = [{
    path: 'vehicle', loadChildren:  ()=> import('./vehicle/vehicle.module').then(x=>x.VehicleModule)
 },{
    path: 'settings', loadChildren: ()=> import('./modules/settings/settings.module').then(x=>x.SettingsModule)
+},{
+   path: 'mdm', loadChildren: ()=> import('./mdm/mdm.module').then(x=>x.MdmModule)
 }];
 /*'./app/vehicle/vehicle.module#VehicleModule'*/
 @NgModule({

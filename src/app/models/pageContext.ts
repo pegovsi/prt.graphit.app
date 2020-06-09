@@ -21,3 +21,22 @@ export interface UserPageFilter {
   "lastName":string,
   "middleName":string
 }
+
+export interface VehicleModelPageFilter {
+  vehicleModelId: string;
+  vehicleTypeId:string;
+  chassisId:string;
+}
+
+export interface CrewPageFilter {
+  vehicleId:string;
+  militaryFormationId:string
+}
+
+export interface MilitaryFormationPageFilter {
+  militaryFormationId:string,
+  levelManagementId:string
+}
+export interface MilitaryPositionPageFilter {
+  militaryPositionId:string;
+}

@@ -1,0 +1,76 @@
+
+<!-- Page Heading -->
+<h1 class="h3 mb-4 text-gray-800">Должности</h1>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <!--<h6 class="m-0 font-weight-bold text-primary">+ Добавить</h6>-->
+    <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">
+      <i class="fas fa-fw fa-plus-circle"></i>
+      <span>Добавить</span>
+    </a>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+        <tr>
+          <th>Номер</th>
+          <th>Наименование</th>
+          <th>Статус</th>
+        </tr>
+        </thead>
+        <!--<tfoot>
+        <tr>
+          <th>Наименование</th>
+          <th>Номер шасси</th>
+          <th>Номер производителя</th>
+          <th>Номер регистрации</th>
+          <th>Город</th>
+          <th>Дивизия</th>
+          <th>Состояние</th>
+        </tr>
+        </tfoot>-->
+        <tbody>
+        <tr  *ngFor="let item of data; let inx = index">
+          <td>
+            {{inx +1}}
+          </td>
+          <td>
+            <a [routerLink]="['/vehicle', 'vehicle',item.id, 'edit']">
+              {{item.name}}</a>
+          </td>
+          <td>{{item.activeStatus.name}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-5"></div>
+      <div class="col-sm-12 col-md-7">
+        <div class="dataTables_paginate paging_simple_numbers">
+          <ul class="pagination">
+            <li class="paginate_button page-item previous disabled">
+              <a routerLink="/1" class="page-link">Назад</a>
+            </li>
+            <li class="paginate_button page-item"
+                [class.active]="currentPage == count"
+                *ngFor="let count of totalPages">
+              <button class="page-link" (click)="onCurrentPage(count)">{{count}}</button>
+            </li>
+            <li class="paginate_button page-item next" *ngIf="totalCount>10">
+              <button class="page-link" >...</button>
+            </li>
+            <li class="paginate_button page-item next" *ngIf="totalCount>10">
+              <button class="page-link" >{{totalCount}}</button>
+            </li>
+            <li class="paginate_button page-item next">
+              <a routerLink="/1" class="page-link">Вперёд</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

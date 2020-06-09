@@ -23,6 +23,11 @@ export interface Vehicle {
 
 }
 
+export interface VehicleShortList {
+  id:string;
+  name:string;
+}
+
 export interface VehiclePictures {
   uri:string;
   uriPreview:string;
@@ -79,4 +84,9 @@ export interface Condition {
   name:string;
   iconLink:string|null,
   readiness:boolean
+}
+export interface Chassis {
+  id:string,
+  name:string;
+  manufacturerId:string;
 }

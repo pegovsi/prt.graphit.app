@@ -12,7 +12,7 @@
   </div>
   <div class="card-body">
     <div class="table-responsive">
-      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+      <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
         <thead>
         <tr>
           <th>№</th>
@@ -30,23 +30,32 @@
           <td>{{user.lastName}}</td>
           <td>{{user.middleName}}</td>
         </tr>
+
         </tbody>
       </table>
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-12 col-md-5">
-
-    </div>
+    <div class="col-sm-12 col-md-5"></div>
     <div class="col-sm-12 col-md-7">
       <div class="dataTables_paginate paging_simple_numbers">
         <ul class="pagination">
           <li class="paginate_button page-item previous disabled">
-            <a routerLink="/1" class="page-link">previous</a>
+            <a routerLink="/1" class="page-link">Назад</a>
           </li>
-          <li class="paginate_button page-item active"
-              *ngFor="let count of totalCount">
-            <a routerLink="/1" class="page-link">{{count}}</a>
+          <li class="paginate_button page-item"
+              [class.active]="currentPage == count"
+              *ngFor="let count of totalPages">
+            <button class="page-link" (click)="onCurrentPage(count)">{{count}}</button>
+          </li>
+          <li class="paginate_button page-item next" *ngIf="totalCount>10">
+            <button class="page-link" >...</button>
+          </li>
+          <li class="paginate_button page-item next" *ngIf="totalCount>10">
+            <button class="page-link" >{{totalCount}}</button>
+          </li>
+          <li class="paginate_button page-item next">
+            <a routerLink="/1" class="page-link">Вперёд</a>
           </li>
         </ul>
       </div>

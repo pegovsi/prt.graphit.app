@@ -19,6 +19,9 @@ import {AngularSplitModule} from "angular-split";
 import {ModalRefDirective} from "./directives/modalRef.directive";
 import {ModalComponent} from "./shared/components/modal/modal.component";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MdmHomeComponent } from './mdm/mdm-home/mdm-home.component';
+import { VehicleCityChartComponent } from './charts/vehicle-city-chart/vehicle-city-chart.component';
+import { VehicleCityChartRadarComponent } from './charts/vehicle-city-chart-radar/vehicle-city-chart-radar.component';
 
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
@@ -36,7 +39,9 @@ const INTERCEPTOR_PROVIDER: Provider = {
     LoginLayoutComponent,
     DashboardComponent,
     MapComponent,
-    MapVehiclesComponent
+    MapVehiclesComponent,
+    VehicleCityChartComponent,
+    VehicleCityChartRadarComponent
   ],
     imports: [
         BrowserModule,

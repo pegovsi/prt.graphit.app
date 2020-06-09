@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from "../../../models/user";
 import {UsersService} from "../../../services/users.service";
-import {PageContext, UserPageFilter, VehiclePageFilter} from "../../../models/pageContext";
+import {MilitaryPositionPageFilter, PageContext, UserPageFilter, VehiclePageFilter} from "../../../models/pageContext";
 import {AlertService} from "../../../services/alert.service";
 
 @Component({
@@ -11,16 +11,20 @@ import {AlertService} from "../../../services/alert.service";
 })
 export class UsersSettingsComponent implements OnInit {
 
-  users:User[];
-  totalCount:number;
+  users:User[] = [];
+  totalCount: number;
+  totalPages: Array<number>;
+  currentPage:number;
 
   constructor(
     private alertService: AlertService,
     private usersService: UsersService) { }
 
   ngOnInit(): void {
+    this.getData(1, 12);
+  }
 
-
+  getData(pageIndex:number, pageSize:number){
     let command: PageContext<UserPageFilter> = {
       pageIndex: 1,
       pageSize: 10,
@@ -39,6 +43,27 @@ export class UsersSettingsComponent implements OnInit {
 
       this.alertService.success('Title', 'Данные обновились','' )
     });
+  }
+
+  setPages(totalCount:number){
+    let count: number;
+
+    if(totalCount > 10){
+      count = 10;
+    }else {
+      count = totalCount;
+    }
+
+    this.totalPages = new Array<number>(count);
+    for (let i=0; i<=count; i++){
+      this.totalPages[i] = (i+1);
+    }
+  }
+
+
+  onCurrentPage(event){
+    this.currentPage = event;
+    this.getData(event, 12);
   }
 
 }

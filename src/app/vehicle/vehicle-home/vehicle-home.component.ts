@@ -2,12 +2,8 @@ import {Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef
 import {HttpServiceService} from "../../services/http-service.service";
 import {Vehicle} from "../../models/Vehicle";
 import {Observable} from 'rxjs';
-import {SearchVehicleByNameCommand} from "../../models/SearchVehicleByNameCommand";
 import {AlertService} from "../../services/alert.service";
 import {PageContext, VehiclePageFilter} from "../../models/pageContext";
-import {VehiclesCollectionViewModel} from "../../models/vehiclesCollectionViewModel";
-import {ModalRefDirective} from "../../directives/modalRef.directive";
-import {ModalComponent} from "../../shared/components/modal/modal.component";
 import {ModalPubSubService} from "../../services/modal-pub-sub.service";
 
 @Component({
@@ -18,6 +14,7 @@ import {ModalPubSubService} from "../../services/modal-pub-sub.service";
 })
 export class VehicleHomeComponent implements OnInit {
 
+  isLoaded:boolean = true;
   vehicles: Vehicle[];
   totalCount: number;
   totalPages: Array<number>;
@@ -33,7 +30,7 @@ export class VehicleHomeComponent implements OnInit {
      ) { }
 
   ngOnInit(): void {
-
+    this.isLoaded = false;
     this.getData(1, 12);
   }
 
@@ -68,7 +65,7 @@ export class VehicleHomeComponent implements OnInit {
       .subscribe(data => {
         this.vehicles = data.data;
         this.totalCount = data.totalCount;
-
+        this.isLoaded = true;
         this.setPages(data.totalCount);
 
         this.alertService.success('Title', 'Данные обновились','' );

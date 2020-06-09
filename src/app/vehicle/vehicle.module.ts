@@ -15,14 +15,19 @@ import {AngularSplitModule} from "angular-split";
 import {ModalRefDirective} from "../directives/modalRef.directive";
 import {ModalComponent} from "../shared/components/modal/modal.component";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import { VehicleModelComponent } from './vehicle-model/vehicle-model.component';
+import { CrewComponent } from './crew/crew.component';
 
 
 const routes: Routes =[{
     path: '', component: MainLayoutComponent, children: [
       {path: '', redirectTo: '/vehicle/map', pathMatch: 'full'},
       {path: 'map', component: MapVehiclesComponent, canActivate:[AuthGuard]},
+      {path: 'models', component: VehicleModelComponent, canActivate:[AuthGuard]},
       {path: 'vehicles', component: VehicleHomeComponent, canActivate:[AuthGuard]},
-      {path: 'vehicle/:id/edit', component: VehicleDetailsComponent, canActivate:[AuthGuard]}
+      {path: 'vehicle/:id/edit', component: VehicleDetailsComponent, canActivate:[AuthGuard]},
+      {path: 'crew', component: CrewComponent, canActivate:[AuthGuard]},
+      {path: 'crew/:id/edit', component: VehicleDetailsComponent, canActivate:[AuthGuard]}
     ]
   }];
 @NgModule({
@@ -30,6 +35,8 @@ const routes: Routes =[{
     /*MainLayoutComponent,*/
     VehicleHomeComponent,
     VehicleDetailsComponent,
+    VehicleModelComponent,
+    CrewComponent,
 
     /*AsideComponent,
     HeaderComponent*/

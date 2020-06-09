@@ -169,14 +169,14 @@ sup {
 }
 
 a {
-  color: #4e73df;
+  color: #6690b9;
   text-decoration: none;
   background-color: transparent;
 }
 
 a:hover {
-  color: #224abe;
-  text-decoration: underline;
+  color: #2585db;
+  text-decoration: none;
 }
 
 a:not([href]):not([tabindex]) {
@@ -4607,14 +4607,14 @@ input[type="button"].btn-block {
   padding: 0.5rem 0.75rem;
   margin-left: -1px;
   line-height: 1.25;
-  color: #4e73df;
+  color: #827e72;
   background-color: #fff;
   border: 1px solid #dddfeb;
 }
 
 .page-link:hover {
   z-index: 2;
-  color: #224abe;
+  color: #ffc000;
   text-decoration: none;
   background-color: #eaecf4;
   border-color: #dddfeb;
@@ -4640,8 +4640,8 @@ input[type="button"].btn-block {
 .page-item.active .page-link {
   z-index: 1;
   color: #fff;
-  background-color: #4e73df;
-  border-color: #4e73df;
+  background-color: #ffc000;
+  border-color: #ffc000;
 }
 
 .page-item.disabled .page-link {
@@ -7552,7 +7552,7 @@ button.bg-dark:focus {
 
 .mb-4,
 .my-4 {
-  margin-bottom: 1.5rem !important;
+  margin-bottom: 1.0rem !important;
 }
 
 .ml-4,
@@ -10436,7 +10436,7 @@ a:focus {
 }
 
 .sidebar-dark .nav-item .nav-link:active, .sidebar-dark .nav-item .nav-link:focus, .sidebar-dark .nav-item .nav-link:hover {
-  color: #fff;
+  color: #ffc000;
 }
 
 .sidebar-dark .nav-item .nav-link:active i, .sidebar-dark .nav-item .nav-link:focus i, .sidebar-dark .nav-item .nav-link:hover i {

@@ -5,8 +5,10 @@ import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import {SearchVehicleByNameCommand} from "../models/SearchVehicleByNameCommand";
 import {PageContext, VehiclePageFilter} from "../models/pageContext";
-import {VehiclesCollectionViewModel} from "../models/vehiclesCollectionViewModel";
 import {environment} from "../../environments/environment";
+import {CollectionViewModel} from "../models/vehiclesCollectionViewModel";
+import {VehicleConditionDto} from "../models/vehicleConditionDto";
+import {VehiclesCountByCityDto} from "../models/VehiclesCountByCityDto";
 
 @Injectable({
   providedIn: 'root'
@@ -49,8 +51,8 @@ export class HttpServiceService {
       );
   }
 
-  getVehiclesPage(command: PageContext<VehiclePageFilter>): Observable<VehiclesCollectionViewModel<Vehicle[]>> {
-    return this.client.post<VehiclesCollectionViewModel<Vehicle[]>>(
+  getVehiclesPage(command: PageContext<VehiclePageFilter>): Observable<CollectionViewModel<Vehicle[]>> {
+    return this.client.post<CollectionViewModel<Vehicle[]>>(
       `${environment.api}/api/v1/vehicles/page`,
       JSON.stringify(command),
       this.httpOptions)
@@ -59,6 +61,27 @@ export class HttpServiceService {
         catchError(this.handleError)
       );
   }
+
+  getVehicleCondition(): Observable<VehicleConditionDto> {
+    return this.client.get<VehicleConditionDto>(
+      `${environment.api}/api/v1/vehicles/condition`,
+      this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
+  }
+  getVehicleByCityReport(): Observable<VehiclesCountByCityDto> {
+    return this.client.get<VehiclesCountByCityDto>(
+      `${environment.api}/api/v1/vehicles/report-by-city`,
+      this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
+  }
+
+
 
   // Error handling
   handleError(error) {

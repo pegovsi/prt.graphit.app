@@ -3,6 +3,7 @@ import {Vehicle} from "../models/Vehicle";
 import {HttpServiceService} from "../services/http-service.service";
 import {AlertService} from "../services/alert.service";
 import {PageContext, VehiclePageFilter} from "../models/pageContext";
+import {SplitService} from "../services/split.service";
 
 @Component({
   selector: 'app-map-vehicles',
@@ -18,7 +19,8 @@ export class MapVehiclesComponent implements OnInit {
 
   constructor(
     private httpClient: HttpServiceService,
-              private alertService: AlertService) { }
+    private alertService: AlertService,
+    private splitService: SplitService) { }
 
   ngOnInit(): void {
     this.getData(1, 12);
@@ -71,6 +73,6 @@ export class MapVehiclesComponent implements OnInit {
 
   //отлавливает изменения размера сплита
   transitionEnd(){
-
+    this.splitService.updateMap();
   }
 }

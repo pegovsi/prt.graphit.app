@@ -1,4 +1,4 @@
-export interface VehiclesCollectionViewModel<T> {
+export interface CollectionViewModel<T> {
   data: T,
   totalCount: number
 }

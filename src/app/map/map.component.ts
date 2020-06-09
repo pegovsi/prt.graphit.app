@@ -3,6 +3,7 @@ import OlXYZ from 'ol/source/xyz';
 import XYZSource from 'ol/source/xyz';
 import TileLayer from 'ol/layer/tile';
 import {environment} from "../../environments/environment";
+import {SplitService} from "../services/split.service";
 
 declare var ol: any;
 
@@ -13,15 +14,23 @@ declare var ol: any;
 })
 export class MapComponent implements OnInit {
 
-  constructor() { }
+  constructor(private splitService: SplitService) { }
 
   map: any;
-  latitude: number = 58.008; //10.4683841;
-  longitude: number = 55.010; //-66.9604058;
+  latitude: number = 50.008; //10.4683841;
+  longitude: number = 50.010; //-66.9604058;
+  vheightNumber = 350;
+  vheight = `${350}px`;
 
 
   ngOnInit(): void {
 
+    this.splitService.dynamicComponent$.subscribe(data=>{
+      console.log('setCenter');
+      this.vheightNumber = this.vheightNumber + 100;
+      this.vheight = `${this.vheightNumber}px`;
+      //this.setCenter();
+    });
 
     var mousePositionControl = new ol.control.MousePosition({
       coordinateFormat: ol.coordinate.createStringXY(4),

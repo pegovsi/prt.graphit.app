@@ -17,6 +17,8 @@ import {ModalRefDirective} from "../directives/modalRef.directive";
 import { ModalComponent } from './components/modal/modal.component';
 import {ModalContainerRefDirective} from "../directives/modalContainerRef.directive";
 import {AngularMaterialModule} from "./angular-material.module";
+import { ChartsModule } from 'ng2-charts';
+import {PreloaderComponent} from "./components/preloader/preloader.component";
 
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
@@ -32,13 +34,15 @@ const INTERCEPTOR_PROVIDER: Provider = {
     HeaderComponent,
     ModalComponent,
     ModalRefDirective,
-    ModalContainerRefDirective
+    ModalContainerRefDirective,
+    PreloaderComponent
   ],
   imports: [
     CommonModule,
     HttpClientModule,
     RouterModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    ChartsModule
   ],
   exports: [
 
@@ -47,7 +51,9 @@ const INTERCEPTOR_PROVIDER: Provider = {
     AlertComponent,
     AsideComponent,
     HeaderComponent,
-    AngularMaterialModule
+    AngularMaterialModule,
+    ChartsModule,
+    PreloaderComponent
   ],
   providers:[
     INTERCEPTOR_PROVIDER,
