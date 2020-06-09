@@ -64,22 +64,25 @@
       <div class="col-sm-12 col-md-7">
         <div class="dataTables_paginate paging_simple_numbers">
           <ul class="pagination">
-            <li class="paginate_button page-item previous disabled">
-              <a routerLink="/1" class="page-link">Назад</a>
+            <li class="paginate_button page-item previous" [attr.disabled]="currentPage === 1"
+              [ngClass]="currentPage===1? 'disabled':''">
+              <button class="page-link" (click)="onBack()">Назад</button>
             </li>
             <li class="paginate_button page-item"
                 [class.active]="currentPage == count"
-                *ngFor="let count of totalPages">
+                *ngFor="let count of pages">
               <button class="page-link" (click)="onCurrentPage(count)">{{count}}</button>
             </li>
-            <li class="paginate_button page-item next" *ngIf="totalCount>10">
-              <button class="page-link" >...</button>
-            </li>
-            <li class="paginate_button page-item next" *ngIf="totalCount>10">
-              <button class="page-link" >{{totalCount}}</button>
-            </li>
-            <li class="paginate_button page-item next">
-              <a routerLink="/1" class="page-link">Вперёд</a>
+<!--            <li class="paginate_button page-item next" *ngIf="totalCount>10">-->
+<!--              <button class="page-link" >...</button>-->
+<!--            </li>-->
+<!--            <li class="paginate_button page-item next" *ngIf="totalCount>10">-->
+<!--              <button class="page-link" >{{totalCount}}</button>-->
+<!--            </li>-->
+            <li class="paginate_button page-item next"
+                [attr.disabled]="currentPage === totalPages"
+                [ngClass]="currentPage===totalPages? 'disabled':''">
+              <button class="page-link" (click)="onNext()">Вперёд</button>
             </li>
           </ul>
         </div>
