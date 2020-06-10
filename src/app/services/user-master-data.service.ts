@@ -1,15 +1,14 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {Observable, Subject, throwError} from "rxjs";
-import {PageContext, UserPageFilter, VehicleModelPageFilter} from "../models/pageContext";
-import {CollectionViewModel, UsersCollectionViewModel} from "../models/vehiclesCollectionViewModel";
-import {User} from "../models/user";
+import {PageContext, UserMasterDataFilter, UserPageFilter, VehicleModelPageFilter} from "../models/pageContext";
+import {CollectionViewModel } from "../models/vehiclesCollectionViewModel";
 import {environment} from "../../environments/environment";
 import {catchError, retry} from "rxjs/operators";
-import {VehicleModelDto} from "../models/vehicleModelDto";
+import {UserMasterDataDto} from "../models/userMasterDataDto";
 
 @Injectable({providedIn: 'root'})
-export class VehicleModelService {
+export class UserMasterDataService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -21,20 +20,10 @@ export class VehicleModelService {
   constructor(private client: HttpClient) {
   }
 
-  getModelsPage(command: PageContext<VehicleModelPageFilter>):Observable<CollectionViewModel<VehicleModelDto[]>>{
-    return this.client.post<UsersCollectionViewModel<VehicleModelDto[]>>(
-      `${environment.api}/api/v1/vehicle-model/page`,
+  getModelsPage(command: PageContext<UserMasterDataFilter>):Observable<CollectionViewModel<UserMasterDataDto[]>>{
+    return this.client.post<CollectionViewModel<UserMasterDataDto[]>>(
+      `${environment.api}/api/v1/user-master-data/page`,
       JSON.stringify(command),
-      this.httpOptions)
-      .pipe(
-        retry(1),
-        catchError(this.handleError)
-      );
-  }
-
-  getAllModels():Observable<VehicleModelDto[]>{
-    return this.client.get<VehicleModelDto[]>(
-      `${environment.api}/api/v1/vehicle-model`,
       this.httpOptions)
       .pipe(
         retry(1),

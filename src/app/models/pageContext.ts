@@ -40,3 +40,7 @@ export interface MilitaryFormationPageFilter {
 export interface MilitaryPositionPageFilter {
   militaryPositionId:string;
 }
+
+export interface UserMasterDataFilter {
+  vehicleModelId:string
+}

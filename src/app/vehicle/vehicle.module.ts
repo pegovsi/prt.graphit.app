@@ -17,6 +17,8 @@ import {ModalComponent} from "../shared/components/modal/modal.component";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import { VehicleModelComponent } from './vehicle-model/vehicle-model.component';
 import { CrewComponent } from './crew/crew.component';
+import { ConstructorModelsComponent } from './constructor-models/constructor-models.component';
+import { ConstructorModelsCreateComponent } from './constructor-models-create/constructor-models-create.component';
 
 
 const routes: Routes =[{
@@ -27,7 +29,10 @@ const routes: Routes =[{
       {path: 'vehicles', component: VehicleHomeComponent, canActivate:[AuthGuard]},
       {path: 'vehicle/:id/edit', component: VehicleDetailsComponent, canActivate:[AuthGuard]},
       {path: 'crew', component: CrewComponent, canActivate:[AuthGuard]},
-      {path: 'crew/:id/edit', component: VehicleDetailsComponent, canActivate:[AuthGuard]}
+      {path: 'crew/:id/edit', component: VehicleDetailsComponent, canActivate:[AuthGuard]},
+      {path: 'constructor-models', component: ConstructorModelsComponent, canActivate:[AuthGuard]},
+      {path: 'constructor-models-create', component: ConstructorModelsCreateComponent, canActivate:[AuthGuard]},
+      {path: 'constructor-models/:id/edit', component: VehicleDetailsComponent, canActivate:[AuthGuard]}
     ]
   }];
 @NgModule({
@@ -37,17 +42,20 @@ const routes: Routes =[{
     VehicleDetailsComponent,
     VehicleModelComponent,
     CrewComponent,
+    ConstructorModelsComponent,
+    ConstructorModelsCreateComponent,
 
     /*AsideComponent,
     HeaderComponent*/
   ],
-    imports: [
-        CommonModule,
-        SharedModule,
-        AngularSplitModule.forRoot(),
-        RouterModule.forChild(routes),
-        NgbModule
-    ],
+  imports: [
+    CommonModule,
+    SharedModule,
+    AngularSplitModule.forRoot(),
+    RouterModule.forChild(routes),
+    NgbModule,
+    ReactiveFormsModule
+  ],
   exports:[RouterModule],
   providers:[
     HttpServiceService
