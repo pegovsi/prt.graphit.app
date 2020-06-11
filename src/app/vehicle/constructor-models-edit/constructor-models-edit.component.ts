@@ -11,7 +11,6 @@ import {
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {switchMap} from "rxjs/operators";
 import {Observable} from "rxjs";
-import {Vehicle} from "../../models/Vehicle";
 
 
 @Component({
@@ -43,7 +42,8 @@ export class ConstructorModelsEditComponent implements OnInit {
 
     this.userMasterData$ = this.route.params
       .pipe(switchMap((params: Params) => {
-        return this.userMasterDataService.getUserMasterDataById(params['id']);
+        return this.userMasterDataService
+          .getUserMasterDataById(params['id']);
       }));
 
     this.vehicleModelService.getAllModels()
@@ -100,6 +100,10 @@ export class ConstructorModelsEditComponent implements OnInit {
       })
     );
 
+  }
+
+  removeField(i:number){
+    this.fields.removeAt(i);
   }
 
 

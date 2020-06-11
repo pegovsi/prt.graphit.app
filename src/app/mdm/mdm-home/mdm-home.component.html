@@ -1,23 +1,55 @@
 <div class="row">
-  <div class="col-lg-6">
+  <div class="col-lg-12">
 
     <!-- Default Card Example -->
-    <div class="card mb-4">
-      <div class="card-header">
-        Справочники
-      </div>
-      <div class="card-body">
-        <div>
-          <a routerLink="/mdm/level-menagement">Уровни управления</a>
-        </div>
-        <div>
-          <a routerLink="/mdm/military-formation">Воинские формирования</a>
-        </div>
-        <div>
-          <a routerLink="/mdm/military-position">Должности</a>
-        </div>
+    <div class="card mb-md-5">
+    <div class="card-body">
+      <div class="form-row">
+        <mat-tab-group color="">
+          <mat-tab label="Основное">
+            <br>
+            <div>
+              <a routerLink="/mdm/level-menagement">Уровни управления</a>
+            </div>
+
+            <br>
+            <div>
+              <a routerLink="/mdm/military-formation">Воинские формирования</a>
+            </div>
+
+            <br>
+            <div>
+              <a routerLink="/mdm/military-position">Должности</a>
+            </div>
+
+          </mat-tab>
+          <mat-tab label="Склад"></mat-tab>
+          <mat-tab label="Запчасти"></mat-tab>
+          <mat-tab label="История ремонтов"></mat-tab>
+          <mat-tab label="История ремонтов"></mat-tab>
+      </mat-tab-group>
       </div>
     </div>
+    </div>
+
+
+
+<!--    <div class="card mb-auto">-->
+
+<!--      <div class="card-body">-->
+<!--       <div class="form-row">-->
+<!--         <div class="col">-->
+<!--           <a routerLink="/mdm/level-menagement">Уровни управления</a>-->
+<!--         </div>-->
+<!--         <div class="col">-->
+<!--           <a routerLink="/mdm/military-formation">Воинские формирования</a>-->
+<!--         </div>-->
+<!--         <div class="col">-->
+<!--           <a routerLink="/mdm/military-position">Должности</a>-->
+<!--         </div>-->
+<!--       </div>-->
+<!--      </div>-->
+<!--    </div>-->
 
   </div>
 </div>

@@ -62,7 +62,10 @@ export class ConstructorModelsCreateComponent implements OnInit {
          typeData: new FormControl('')
         })
     );
+  }
 
+  removeField(i:number){
+    this.fields.removeAt(i);
   }
 
   ngOnInit(): void {

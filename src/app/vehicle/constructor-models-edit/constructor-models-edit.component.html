@@ -9,58 +9,93 @@
         <div class="card-body">
           <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
-<!--            <h2 formControlName="model" >{{vehicleModels[form.controls['model'].value]}}</h2>-->
-            <select formControlName="model" (change)="onInputChange($event)" disabled>
-              <option disabled>Выберите модель ВВТ</option>
-              <option *ngFor="let item of vehicleModels; let i = index" [value]="vehicleModels[i].id">
-                {{vehicleModels[i].name}}
-              </option>
-            </select>
-
-            <div>
-              <input type="text"
-                     formControlName="name"
-                     class="form-control form-control-user"
-                     placeholder="имя справочника">
-            </div>
-
-            <a class="btn btn-success btn-icon-split" (click)="addField()">
-              <span class="icon text-white-50">
-                <i class="fas fa-check"></i>
-              </span>
-              <span class="text" style="color: #fff">Добавить поле</span>
-            </a>
-
-            <div formArrayName="fields">
-              <div *ngFor="let field of form.controls['fields']['controls']; let i = index">
-
-                <div [formGroupName]="i">
-                  <div class="row">
-                    <div class="col-lg-4">
-                      <input type="text"
-                             formControlName="nameField"
-                             class="form-group"
-                             class="form-control form-control-user" />
-                    </div>
-                    <div class="col-lg-4">
-
-                      <select formControlName="typeData">
-                        <option disabled>Выберите тип поля</option>
-                        <option *ngFor="let item of types; let inx = index" [value]="types[inx].id">
-                          {{types[inx].description}}
-                        </option>
-                      </select>
-
-                    </div>
-                  </div>
-                </div>
-
+            <div class="form-row mb-4">
+              <div class="col">
+                <!-- name -->
+                <input type="text"
+                       formControlName="name"
+                       class="form-control form-control-user"
+                       placeholder="имя справочника">
               </div>
             </div>
 
+            <div class="form-row mb-4">
+              <div class="col">
+                <!-- model -->
+                <select
+                  formControlName="model"
+                  class="browser-default custom-select"
+                  (change)="onInputChange($event)" disabled>
+                  <option disabled>Выберите модель ВВТ</option>
+                  <option *ngFor="let item of vehicleModels; let i = index" [value]="vehicleModels[i].id">
+                    {{vehicleModels[i].name}}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row mb-4">
+              <div class="col">
+                <!-- model -->
+                <a class="btn btn-success btn-icon-split" (click)="addField()">
+                  <span class="icon text-white-50">
+                    <i class="fas fa-plus"></i>
+                  </span>
+                  <span class="text" style="color: #fff">Добавить поле</span>
+                </a>
+              </div>
+            </div>
 
-            <button  type="submit"
-                     class="btn btn-primary btn-user btn-block">Submit</button>
+            <div class="form-row mb-4">
+              <div class="col">
+                <div formArrayName="fields">
+                  <div *ngFor="let field of form.controls['fields']['controls']; let i = index">
+                  <br>
+                    <div [formGroupName]="i">
+                      <div class="row">
+                        <div class="col-lg-4">
+                          <input type="text"
+                                 formControlName="nameField"
+                                 class="form-group"
+                                 class="form-control form-control-user" />
+                        </div>
+                        <div class="col-lg-4">
+
+                          <select
+                            formControlName="typeData"
+                            class="browser-default custom-select">
+                            <option disabled>Выберите тип поля</option>
+                            <option *ngFor="let item of types; let inx = index" [value]="types[inx].id">
+                              {{types[inx].description}}
+                            </option>
+                          </select>
+
+                        </div>
+
+                        <div class="col-lg-4">
+
+                          <a class="btn btn-success btn-icon-split" (click)="removeField(i)">
+                            <span class="text" style="color: #fff">X</span>
+                          </a>
+
+                        </div>
+
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row mb-4">
+              <div class="col-3">
+                <button mdbBtn color="info"
+                        block="true"
+                        class="my-4 btn btn-primary btn-user btn-block"
+                        type="submit">Сохранить</button>
+              </div>
+            </div>
+
           </form>
         </div>
       </div>
