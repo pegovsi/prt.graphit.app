@@ -17,15 +17,16 @@
         <thead>
         <tr>
           <th>№</th>
-          <th>Модель</th>
           <th>Наименование</th>
+          <th>Модель</th>
           <th></th>
         </tr>
         </thead>
         <tbody>
-        <tr  *ngFor="let item of userMasterDatas">
+        <tr  *ngFor="let item of userMasterDatas; let inx = index">
+          <td>{{inx + 1}}</td>
           <td>
-            <a [routerLink]="['/vehicle', 'vehicle',item.id, 'edit']">{{item.name}}</a>
+            <a [routerLink]="['/vehicle', 'constructor-models',item.id, 'edit']">{{item.name}}</a>
             <!--            <span (click)="showModal(vehicle.id)" >{{vehicle.name}}</span>-->
           </td>
           <td>{{item.vehicleModel.name}}</td>

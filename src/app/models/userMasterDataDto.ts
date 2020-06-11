@@ -36,3 +36,13 @@ export interface UserMasterDataContentDto {
 }
 
 
+export interface CreateUserMasterDataCommand {
+  vehicleModelId:string,
+  name:string,
+  userMasterDataFields:UserMasterDataFieldCommand[]
+}
+export interface UserMasterDataFieldCommand {
+  name:string,
+  typeUserMasterDataId:string
+}
+

@@ -5,7 +5,8 @@ import {PageContext, UserMasterDataFilter, UserPageFilter, VehicleModelPageFilte
 import {CollectionViewModel } from "../models/vehiclesCollectionViewModel";
 import {environment} from "../../environments/environment";
 import {catchError, retry} from "rxjs/operators";
-import {UserMasterDataDto} from "../models/userMasterDataDto";
+import {CreateUserMasterDataCommand, TypeUserMasterDataDto, UserMasterDataDto} from "../models/userMasterDataDto";
+import {Result} from "../models/Result";
 
 @Injectable({providedIn: 'root'})
 export class UserMasterDataService {
@@ -31,6 +32,35 @@ export class UserMasterDataService {
       );
   }
 
+  getTypesUserMasterData():Observable<TypeUserMasterDataDto[]>{
+    return this.client.get<TypeUserMasterDataDto[]>(
+      `${environment.api}/api/v1/user-master-data/types`,
+      this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
+  }
+  create(command: CreateUserMasterDataCommand):Observable<Result<string>>{
+    return this.client.post<Result<string>>(
+      `${environment.api}/api/v1/user-master-data`,
+      JSON.stringify(command),
+      this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
+  }
+
+  getUserMasterDataById(id:string):Observable<UserMasterDataDto>{
+    return this.client.get<UserMasterDataDto>(
+      `${environment.api}/api/v1/user-master-data/${id}`,
+      this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
+  }
 
 
 

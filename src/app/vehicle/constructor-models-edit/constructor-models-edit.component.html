@@ -9,9 +9,12 @@
         <div class="card-body">
           <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
-            <select formControlName="model" (change)="onInputChange($event)">
+<!--            <h2 formControlName="model" >{{vehicleModels[form.controls['model'].value]}}</h2>-->
+            <select formControlName="model" (change)="onInputChange($event)" disabled>
               <option disabled>Выберите модель ВВТ</option>
-              <option *ngFor="let item of vehicleModels">{{item.name}}</option>
+              <option *ngFor="let item of vehicleModels; let i = index" [value]="vehicleModels[i].id">
+                {{vehicleModels[i].name}}
+              </option>
             </select>
 
             <div>
@@ -41,9 +44,11 @@
                     </div>
                     <div class="col-lg-4">
 
-                      <select formControlName="typeData" >
-                        <option disabled>Выберите тип полч</option>
-                        <option *ngFor="let item of types">{{item.description}}</option>
+                      <select formControlName="typeData">
+                        <option disabled>Выберите тип поля</option>
+                        <option *ngFor="let item of types; let inx = index" [value]="types[inx].id">
+                          {{types[inx].description}}
+                        </option>
                       </select>
 
                     </div>

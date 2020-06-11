@@ -7,18 +7,15 @@ import {SharedModule} from "../shared/shared.module";
 import {HttpServiceService} from "../services/http-service.service";
 import {AuthGuard} from "../services/auth.guard";
 import {ReactiveFormsModule} from "@angular/forms";
-import {AsideComponent} from "../aside/aside.component";
-import {HeaderComponent} from "../header/header.component";
 import { VehicleDetailsComponent } from './vehicle-details/vehicle-details.component';
 import {MapVehiclesComponent} from "../map-vehicles/map-vehicles.component";
 import {AngularSplitModule} from "angular-split";
-import {ModalRefDirective} from "../directives/modalRef.directive";
-import {ModalComponent} from "../shared/components/modal/modal.component";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import { VehicleModelComponent } from './vehicle-model/vehicle-model.component';
 import { CrewComponent } from './crew/crew.component';
 import { ConstructorModelsComponent } from './constructor-models/constructor-models.component';
 import { ConstructorModelsCreateComponent } from './constructor-models-create/constructor-models-create.component';
+import { ConstructorModelsEditComponent } from './constructor-models-edit/constructor-models-edit.component';
 
 
 const routes: Routes =[{
@@ -32,21 +29,18 @@ const routes: Routes =[{
       {path: 'crew/:id/edit', component: VehicleDetailsComponent, canActivate:[AuthGuard]},
       {path: 'constructor-models', component: ConstructorModelsComponent, canActivate:[AuthGuard]},
       {path: 'constructor-models-create', component: ConstructorModelsCreateComponent, canActivate:[AuthGuard]},
-      {path: 'constructor-models/:id/edit', component: VehicleDetailsComponent, canActivate:[AuthGuard]}
+      {path: 'constructor-models/:id/edit', component: ConstructorModelsEditComponent, canActivate:[AuthGuard]}
     ]
   }];
 @NgModule({
   declarations: [
-    /*MainLayoutComponent,*/
     VehicleHomeComponent,
     VehicleDetailsComponent,
     VehicleModelComponent,
     CrewComponent,
     ConstructorModelsComponent,
     ConstructorModelsCreateComponent,
-
-    /*AsideComponent,
-    HeaderComponent*/
+    ConstructorModelsEditComponent
   ],
   imports: [
     CommonModule,

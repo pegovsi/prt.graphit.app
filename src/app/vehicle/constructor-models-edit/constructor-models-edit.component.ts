@@ -5,39 +5,58 @@ import {VehicleModelDto} from "../../models/vehicleModelDto";
 import {UserMasterDataService} from "../../services/user-master-data.service";
 import {
   CreateUserMasterDataCommand,
-  TypeUserMasterDataDto,
+  TypeUserMasterDataDto, UserMasterDataDto,
   UserMasterDataFieldCommand
 } from "../../models/userMasterDataDto";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Params, Router} from "@angular/router";
+import {switchMap} from "rxjs/operators";
+import {Observable} from "rxjs";
+import {Vehicle} from "../../models/Vehicle";
 
 
 @Component({
-  selector: 'app-constructor-models-create',
-  templateUrl: './constructor-models-create.component.html',
-  styleUrls: ['./constructor-models-create.component.scss']
+  selector: 'app-constructor-models-edit',
+  templateUrl: './constructor-models-edit.component.html',
+  styleUrls: ['./constructor-models-edit.component.scss']
 })
-export class ConstructorModelsCreateComponent implements OnInit {
+export class ConstructorModelsEditComponent implements OnInit {
 
   vehicleModels: VehicleModelDto[]= [];
   types: TypeUserMasterDataDto[]= [];
   models: any = [];
   form: FormGroup;
+  userMasterData$: Observable<UserMasterDataDto>;
 
   constructor(
     public formBuilder: FormBuilder,
     private userMasterDataService: UserMasterDataService,
     private vehicleModelService: VehicleModelService,
+    private route: ActivatedRoute,
     private router: Router) {
-    this.createForm();
-    this.addField();
+  }
 
+  ngOnInit(): void {
     this.userMasterDataService.getTypesUserMasterData()
       .subscribe(data=>{
-      this.types = data
-    });
+        this.types = data
+      });
+
+    this.userMasterData$ = this.route.params
+      .pipe(switchMap((params: Params) => {
+        return this.userMasterDataService.getUserMasterDataById(params['id']);
+      }));
+
+    this.vehicleModelService.getAllModels()
+      .subscribe(data => {
+        this.vehicleModels = data;
+      });
+
+    this.createForm();
+
   }
 
   createForm() {
+
     this.form  = this.formBuilder.group({
       name: new FormControl(null, [
         Validators.required
@@ -46,6 +65,24 @@ export class ConstructorModelsCreateComponent implements OnInit {
         Validators.required
       ]),
       fields: new FormArray([])
+    });
+
+    this.userMasterData$.subscribe(data=>{
+
+      this.form.controls['name'].setValue(data.name);
+      this.form.controls['model'].setValue(data.vehicleModel.id);
+
+      for (let item of data.userMasterDataFields){
+
+        let newFiled = this.formBuilder.group({
+          nameField: new FormControl(''),
+          typeData: new FormControl('')
+        });
+        newFiled.controls['nameField'].setValue(item.nameField);
+        newFiled.controls['typeData'].setValue(item.typeUserMasterDataId);
+
+        this.fields.push(newFiled);
+      }
     });
   }
 
@@ -58,19 +95,14 @@ export class ConstructorModelsCreateComponent implements OnInit {
 
     this.fields.push(
       this.formBuilder.group({
-         nameField: new FormControl(''),
-         typeData: new FormControl('')
-        })
+        nameField: new FormControl(''),
+        typeData: new FormControl('')
+      })
     );
 
   }
 
-  ngOnInit(): void {
-    this.vehicleModelService.getAllModels()
-      .subscribe(data => {
-        this.vehicleModels = data;
-      });
-  }
+
 
   onInputChange(event){
     //alert(event.target.value);
