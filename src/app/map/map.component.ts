@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import OlXYZ from 'ol/source/xyz';
-import XYZSource from 'ol/source/xyz';
-import TileLayer from 'ol/layer/tile';
 import {environment} from "../../environments/environment";
 import {SplitService} from "../services/split.service";
 
