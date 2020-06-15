@@ -2,9 +2,6 @@ import {MainLayoutComponent} from "../../shared/components/main-layout/main-layo
 import {SharedModule} from "../../shared/shared.module";
 import {HttpServiceService} from "../../services/http-service.service";
 import {AuthGuard} from "../../services/auth.guard";
-import {ReactiveFormsModule} from "@angular/forms";
-import {AsideComponent} from "../../aside/aside.component";
-import {HeaderComponent} from "../../header/header.component";
 import { MainSettingsComponent } from './main-settings/main-settings.component';
 import {CommonModule} from "@angular/common";
 import {RouterModule, Routes } from "@angular/router";
@@ -22,11 +19,8 @@ const routes: Routes =[{
 
 @NgModule({
   declarations: [
-    /*MainLayoutComponent,*/
     MainSettingsComponent,
     UsersSettingsComponent
-    /*AsideComponent,
-    HeaderComponent*/
   ],
   imports: [
     CommonModule,

@@ -10,7 +10,13 @@ import {VehiclesCountByCityDto} from "../models/VehiclesCountByCityDto";
 })
 export class DashboardComponent implements OnInit {
 
-  vehicleCondition:VehicleConditionDto;
+  vehicleCondition:VehicleConditionDto = {
+    vehicleTotal:0,
+    approved:0,
+    readiness:0,
+    vehicleActive: 0,
+    vehicleDisactive: 0
+  };
 
   constructor(private httpClient: HttpServiceService) { }
 

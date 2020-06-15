@@ -3,11 +3,9 @@ import {Routes, RouterModule, PreloadAllModules} from '@angular/router';
 import {PresentationViewComponent} from "./presentation-view/presentation-view.component";
 import {PresentationLayoutComponent} from "./shared/components/presentation-layout/presentation-layout.component";
 import {LoginLayoutComponent} from "./shared/components/login-layout/login-layout.component";
-import {LoginComponent} from "./login/login.component";
 import {MainLayoutComponent} from "./shared/components/main-layout/main-layout.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {AuthGuard} from "./services/auth.guard";
-
 
 const routes: Routes = [{
   path:'', component: MainLayoutComponent, canActivate:[AuthGuard], children:[
@@ -27,8 +25,12 @@ const routes: Routes = [{
    path: 'settings', loadChildren: ()=> import('./modules/settings/settings.module').then(x=>x.SettingsModule)
 },{
    path: 'mdm', loadChildren: ()=> import('./mdm/mdm.module').then(x=>x.MdmModule)
+},{
+    path: 'repair', loadChildren: ()=> import('./modules/repair/repair.module').then(x=>x.RepairModule)
+},{
+    path: 'warehouse', loadChildren: ()=> import('./modules/warehouse/warehouse.module').then(x=>x.WarehouseModule)
 }];
-/*'./app/vehicle/vehicle.module#VehicleModule'*/
+
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
     preloadingStrategy: PreloadAllModules

@@ -1,0 +1,65 @@
+<div class="row">
+  <div class="col-lg-12">
+
+    <!-- Default Card Example -->
+    <div class="card mb-md-5">
+      <div class="card-body">
+        <div class="form-row">
+          <mat-tab-group color="">
+            <mat-tab label="Заявки на поступление">
+
+              <div class="card-body">
+                <div class="table-responsive">
+                  <app-warehouse-document-purchase></app-warehouse-document-purchase>
+                  <ng-template #noContent>
+                    <app-preloader></app-preloader>
+                  </ng-template>
+                </div>
+              </div>
+
+
+            </mat-tab>
+            <mat-tab label="Комплектование и выдача">
+              <div class="card-body">
+                <div class="table-responsive">
+                  <app-warehouse-document-torepair></app-warehouse-document-torepair>
+                  <ng-template #noContent>
+                    <app-preloader></app-preloader>
+                  </ng-template>
+                </div>
+              </div>
+            </mat-tab>
+
+            <mat-tab label="Поступление и списание">
+              <div class="card-body">
+                <div class="table-responsive">
+                  <app-warehouse-document-order></app-warehouse-document-order>
+                  <ng-template #noContent>
+                    <app-preloader></app-preloader>
+                  </ng-template>
+                </div>
+              </div>
+            </mat-tab>
+
+            <mat-tab label="Перемещения">
+              <div class="card-body">
+                <div class="table-responsive">
+                  <app-warehouse-document-movements></app-warehouse-document-movements>
+                  <ng-template #noContent>
+                    <app-preloader></app-preloader>
+                  </ng-template>
+                </div>
+              </div>
+            </mat-tab>
+
+          </mat-tab-group>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+</div>
+
+<router-outlet></router-outlet>

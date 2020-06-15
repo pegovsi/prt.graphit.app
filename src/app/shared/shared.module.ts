@@ -19,6 +19,8 @@ import {ModalContainerRefDirective} from "../directives/modalContainerRef.direct
 import {AngularMaterialModule} from "./angular-material.module";
 import { ChartsModule } from 'ng2-charts';
 import {PreloaderComponent} from "./components/preloader/preloader.component";
+import {VehicleCityChartComponent} from "../charts/vehicle-city-chart/vehicle-city-chart.component";
+import {VehicleCityChartRadarComponent} from "../charts/vehicle-city-chart-radar/vehicle-city-chart-radar.component";
 
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
@@ -35,7 +37,9 @@ const INTERCEPTOR_PROVIDER: Provider = {
     ModalComponent,
     ModalRefDirective,
     ModalContainerRefDirective,
-    PreloaderComponent
+    PreloaderComponent,
+    VehicleCityChartComponent,
+    VehicleCityChartRadarComponent
   ],
   imports: [
     CommonModule,
@@ -53,7 +57,9 @@ const INTERCEPTOR_PROVIDER: Provider = {
     HeaderComponent,
     AngularMaterialModule,
     ChartsModule,
-    PreloaderComponent
+    PreloaderComponent,
+    VehicleCityChartComponent,
+    VehicleCityChartRadarComponent
   ],
   providers:[
     INTERCEPTOR_PROVIDER,

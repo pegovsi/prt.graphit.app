@@ -39,9 +39,8 @@ const INTERCEPTOR_PROVIDER: Provider = {
     LoginLayoutComponent,
     DashboardComponent,
     MapComponent,
-    MapVehiclesComponent,
-    VehicleCityChartComponent,
-    VehicleCityChartRadarComponent
+    MapVehiclesComponent
+
   ],
     imports: [
         BrowserModule,

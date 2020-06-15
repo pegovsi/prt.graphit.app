@@ -1,0 +1,82 @@
+
+<!-- Page Heading -->
+<h1 class="h3 mb-4 text-gray-800">Склады</h1>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <!--<h6 class="m-0 font-weight-bold text-primary">+ Добавить</h6>-->
+<!--    <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">-->
+<!--      <i class="fas fa-fw fa-plus-circle"></i>-->
+<!--      <span>Добавить</span>-->
+<!--    </a>-->
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+        <tr>
+          <th>№</th>
+          <th>Склад</th>
+          <th>Город</th>
+          <th>Бригада</th>
+          <th>Отвественный</th>
+          <th>Статус</th>
+        </tr>
+        </thead>
+
+        <tbody>
+<!--        <tr  *ngFor="let vehicle of vehicles">-->
+<!--          <td>-->
+<!--            <a [routerLink]="['/vehicle', 'vehicle',vehicle.id, 'edit']">{{vehicle.name}}</a>-->
+<!--            &lt;!&ndash;            <span (click)="showModal(vehicle.id)" >{{vehicle.name}}</span>&ndash;&gt;-->
+<!--          </td>-->
+<!--          <td>{{vehicle.vehicleNomberChassis}}</td>-->
+<!--          <td>{{vehicle.vehicleNomberFactory}}</td>-->
+<!--          <td>{{vehicle.vehicleNomberRegister}}</td>-->
+<!--          <td>{{vehicle.city.name}}</td>-->
+<!--          <td>{{vehicle.division.name}}</td>-->
+<!--          <td>-->
+<!--            <span [ngStyle]="{'color': vehicle.condition.name==='Исправен'?'#59d749':'#D61B1B'}">-->
+<!--              {{vehicle.condition.name}}-->
+<!--            </span>-->
+<!--          </td>-->
+<!--        </tr>-->
+        </tbody>
+      </table>
+      <ng-template #noContent>
+        <app-preloader></app-preloader>
+      </ng-template>
+    </div>
+<!--    <div class="row">-->
+<!--      <div class="col-sm-12 col-md-5"></div>-->
+<!--      <div class="col-sm-12 col-md-7">-->
+<!--        <div class="dataTables_paginate paging_simple_numbers">-->
+<!--          <ul class="pagination">-->
+<!--            <li class="paginate_button page-item previous" [attr.disabled]="currentPage === 1"-->
+<!--                [ngClass]="currentPage===1? 'disabled':''">-->
+<!--              <button class="page-link" (click)="onBack()">Назад</button>-->
+<!--            </li>-->
+<!--            <li class="paginate_button page-item"-->
+<!--                [class.active]="currentPage == count"-->
+<!--                *ngFor="let count of pages">-->
+<!--              <button class="page-link" (click)="onCurrentPage(count)">{{count}}</button>-->
+<!--            </li>-->
+<!--            &lt;!&ndash;            <li class="paginate_button page-item next" *ngIf="totalCount>10">&ndash;&gt;-->
+<!--            &lt;!&ndash;              <button class="page-link" >...</button>&ndash;&gt;-->
+<!--            &lt;!&ndash;            </li>&ndash;&gt;-->
+<!--            &lt;!&ndash;            <li class="paginate_button page-item next" *ngIf="totalCount>10">&ndash;&gt;-->
+<!--            &lt;!&ndash;              <button class="page-link" >{{totalCount}}</button>&ndash;&gt;-->
+<!--            &lt;!&ndash;            </li>&ndash;&gt;-->
+<!--            <li class="paginate_button page-item next"-->
+<!--                [attr.disabled]="currentPage === totalPages"-->
+<!--                [ngClass]="currentPage===totalPages? 'disabled':''">-->
+<!--              <button class="page-link" (click)="onNext()">Вперёд</button>-->
+<!--            </li>-->
+<!--          </ul>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+  </div>
+</div>
+

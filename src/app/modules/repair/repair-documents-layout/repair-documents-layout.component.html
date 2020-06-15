@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-lg-12">
+
+    <!-- Default Card Example -->
+    <div class="card mb-md-5">
+      <div class="card-body">
+        <div class="form-row">
+          <mat-tab-group color="">
+            <mat-tab label="Планирование работ">
+
+              <div class="card-body">
+                <div class="table-responsive">
+                  <app-repair-documents-plans></app-repair-documents-plans>
+                  <ng-template #noContent>
+                    <app-preloader></app-preloader>
+                  </ng-template>
+                </div>
+              </div>
+
+
+            </mat-tab>
+            <mat-tab label="Выполнение работ">
+              <div class="card-body">
+                <div class="table-responsive">
+                  <app-repair-documents-working></app-repair-documents-working>
+                  <ng-template #noContent>
+                    <app-preloader></app-preloader>
+                  </ng-template>
+                </div>
+              </div>
+            </mat-tab>
+          </mat-tab-group>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+</div>
+
+<router-outlet></router-outlet>
