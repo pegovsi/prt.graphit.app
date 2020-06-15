@@ -1,4 +1,5 @@
 import {Chassis, VehicleType} from "./Vehicle";
+import {UserMasterDataDto} from "./userMasterDataDto";
 
 export interface VehicleModelDto {
   id:string;
@@ -6,8 +7,9 @@ export interface VehicleModelDto {
   shortName:string;
   vehicleModelType:VehicleType;
   chassi:Chassis;
-  iconLink:string;
-  vehicleModelPositions:VehicleModelPositionDto[]
+  iconLink:string,
+  vehicleModelPositions:VehicleModelPositionDto[],
+  userMasterDatas:UserMasterDataDto[]
 }
 
 export interface VehicleModelPositionDto{

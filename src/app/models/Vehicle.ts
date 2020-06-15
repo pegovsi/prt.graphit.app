@@ -1,3 +1,5 @@
+import {UserMasterDataValueDto} from "./userMasterDataDto";
+import {VehicleModelDto} from "./vehicleModelDto";
 
 export interface Vehicle {
   id:string;
@@ -8,7 +10,7 @@ export interface Vehicle {
   shotsAmount: number,
   operatingTime: number,
   vehicleType:VehicleType,
-  vehicleModel:VehicleModel,
+  vehicleModel:VehicleModelDto,
   vehicleNomberFactory: string,
   vehicleNomberRegister: string,
   vehicleNomberChassis: string,
@@ -19,7 +21,8 @@ export interface Vehicle {
   subdivision: Subdivision,
   brigade:Brigade,
   condition:Condition,
-  vehiclePictures:VehiclePictures[]
+  vehiclePictures:VehiclePictures[],
+  userMasterDataValues:UserMasterDataValueDto[]
 
 }
 
