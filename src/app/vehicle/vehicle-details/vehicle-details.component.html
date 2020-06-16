@@ -7,7 +7,18 @@
 <!--          ВВТ: {{vehicle.name}}-->
 <!--        </div>-->
         <div class="card-body">
-          <img src="{{vehicle.vehiclePictures[0] === null? 'assets/backgr.jpg':vehicle.vehiclePictures[0].uri}}" style="max-width: 360px;">
+          <img src="{{imageMain}}" style="max-width: 360px;">
+          <div style="display: contents; margin: 5px">
+            <ul class="" style="display: inline-block; padding-left: 0px">
+              <li class="" *ngFor="let image of vehicle.vehiclePictures" style="display: inline-block; margin: 2px">
+                <img
+                  src="{{image.uriPreview}}"
+                  style="width: 60px; height: 50px; cursor: pointer"
+
+                (click)="setImage(image.uri)">
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -20,13 +31,13 @@
         <div class="card-body">
           <mat-tab-group color="">
             <mat-tab label="Основное">
-              <form [formGroup]="form" (ngSubmit)="ngSubmit()">
+              <form [formGroup]="form" (ngSubmit)="ngSubmit()" style="width: 90%">
                 <br>
-                <div class="form-row">
-                  <div class="col-lg-4">
+                <div class="form-row" style="width: 90%">
+                  <div class="col-lg-3">
                     <span>Наименование:</span>
                   </div>
-                  <div class="col-lg-4">
+                  <div class="col-lg-6">
                     <input type="text"
                            formControlName="name"
                            class="form-control form-control-user"
@@ -34,11 +45,11 @@
                   </div>
                 </div>
 
-                <div class="form-row">
-                  <div class="col-lg-4">
+                <div class="form-row" style="width: 90%">
+                  <div class="col-lg-3">
                     <span>Модель:</span>
                   </div>
-                  <div class="col-lg-4">
+                  <div class="col-lg-6">
                     <input type="text"
                            formControlName="model"
                            class="form-control form-control-user"
@@ -46,11 +57,11 @@
                   </div>
                 </div>
 
-                <div class="form-row">
-                  <div class="col-lg-4">
+                <div class="form-row" style="width: 90%">
+                  <div class="col-lg-3">
                     <span>Заводской номер:</span>
                   </div>
-                  <div class="col-lg-4">
+                  <div class="col-lg-6">
                     <input type="text"
                            formControlName="factoryNumber"
                            class="form-control form-control-user"
@@ -58,11 +69,11 @@
                   </div>
                 </div>
 
-                <div class="form-row">
-                  <div class="col-lg-4">
+                <div class="form-row" style="width: 90%">
+                  <div class="col-lg-3">
                     <span>Шасси:</span>
                   </div>
-                  <div class="col-lg-4">
+                  <div class="col-lg-6">
                     <input type="text"
                            formControlName="chassis"
                            class="form-control form-control-user"
@@ -70,11 +81,11 @@
                   </div>
                 </div>
 
-                <div class="form-row">
-                  <div class="col-lg-4">
+                <div class="form-row" style="width: 90%">
+                  <div class="col-lg-3">
                     <span>Состояние:</span>
                   </div>
-                  <div class="col-lg-4">
+                  <div class="col-lg-6">
                     <span> {{vehicle.condition.name}} </span>
                   </div>
                 </div>
@@ -85,13 +96,13 @@
                 <div formArrayName="fields">
                   <div *ngFor="let field of form.controls['fields']['controls']; let i = index">
                     <div [formGroupName]="i">
-                      <div class="row">
-                        <div class="col-lg-4">
-                          <h3>
-                            {{field.value['nameField']}}
-                          </h3>
+                      <div class="form-row" style="width: 90%">
+                        <div class="col-lg-6">
+                          <h4>
+                            {{field.value['nameField']}}:
+                          </h4>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-6">
                           <input type="text"
                                  formControlName="valueData"
                                  class="form-group"
@@ -115,9 +126,72 @@
               </form>
 
             </mat-tab>
-            <mat-tab label="Экипаж">Экипаж</mat-tab>
-            <mat-tab label="Запчасти">Запчасти</mat-tab>
-            <mat-tab label="История ремонтов">История ремонтов</mat-tab>
+            <mat-tab label="Экипаж">
+              <div class="card-body">
+                <div class="table-responsive">
+
+                  <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                      <th>№</th>
+                      <th>Дата</th>
+                      <th>Тип приказа</th>
+                      <th>Должность</th>
+                      <th>Пользователь</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr >
+                      <td>
+                      </td>
+                      <td></td>
+                      <td>
+                      </td>
+                      <td>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+
+
+                </div>
+              </div>
+            </mat-tab>
+            <mat-tab label="История ремонтов">
+              <div class="card-body">
+                <div class="table-responsive">
+
+                  <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                      <th>№</th>
+                      <th>Дата</th>
+                      <th>Состав работ</th>
+                      <th>Бригада</th>
+                      <th>Статус</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr >
+                      <td>
+                      </td>
+                      <td></td>
+                      <td>
+                      </td>
+                      <td>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+
+
+                </div>
+              </div>
+            </mat-tab>
           </mat-tab-group>
         </div>
       </div>

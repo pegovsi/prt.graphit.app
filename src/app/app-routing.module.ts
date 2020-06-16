@@ -6,11 +6,13 @@ import {LoginLayoutComponent} from "./shared/components/login-layout/login-layou
 import {MainLayoutComponent} from "./shared/components/main-layout/main-layout.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {AuthGuard} from "./services/auth.guard";
+import {JournalEventsComponent} from "./shared/components/journal-events/journal-events.component";
 
 const routes: Routes = [{
   path:'', component: MainLayoutComponent, canActivate:[AuthGuard], children:[
     { path:'', redirectTo:'/dashboard', pathMatch:'full' },
-    { path:'dashboard', component: DashboardComponent }
+    { path:'dashboard', component: DashboardComponent },
+    { path:'events', component: JournalEventsComponent }
   ]
 },
   {
@@ -29,7 +31,9 @@ const routes: Routes = [{
     path: 'repair', loadChildren: ()=> import('./modules/repair/repair.module').then(x=>x.RepairModule)
 },{
     path: 'warehouse', loadChildren: ()=> import('./modules/warehouse/warehouse.module').then(x=>x.WarehouseModule)
-}];
+},{
+    path: 'messenger', loadChildren: ()=> import('./modules/messenger/messenger.module').then(x=>x.MessengerModule)
+  }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {

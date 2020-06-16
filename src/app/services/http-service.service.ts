@@ -9,6 +9,9 @@ import {environment} from "../../environments/environment";
 import {CollectionViewModel} from "../models/vehiclesCollectionViewModel";
 import {VehicleConditionDto} from "../models/vehicleConditionDto";
 import {VehiclesCountByCityDto} from "../models/VehiclesCountByCityDto";
+import {UpdateVehicleCommand} from "../models/UpdateVehicleCommand";
+import {CreateUserMasterDataCommand} from "../models/userMasterDataDto";
+import {Result} from "../models/Result";
 
 @Injectable({
   providedIn: 'root'
@@ -81,7 +84,16 @@ export class HttpServiceService {
       );
   }
 
-
+  updateVehicle(command: UpdateVehicleCommand):Observable<Result<string>>{
+      return this.client.put<Result<string>>(
+        `${environment.api}/api/v1/vehicles`,
+        JSON.stringify(command),
+        this.httpOptions)
+        .pipe(
+          retry(1),
+          catchError(this.handleError)
+        );
+  }
 
   // Error handling
   handleError(error) {

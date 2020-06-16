@@ -1,0 +1,32 @@
+
+<!-- Page Heading -->
+<h1 class="h3 mb-4 text-gray-800">События</h1>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+        <tr>
+          <th>Номер</th>
+          <th>Дата</th>
+          <th>Событие</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr  *ngFor="let item of events; let inx = index">
+          <td>
+            {{inx + 1}}
+          </td>
+          <td>{{ getDate(item.date) | date:"dd.MM.yyyy hh:mm:ss" }}</td>
+          <td>{{item.name}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>

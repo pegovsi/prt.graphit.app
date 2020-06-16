@@ -22,6 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MdmHomeComponent } from './mdm/mdm-home/mdm-home.component';
 import { VehicleCityChartComponent } from './charts/vehicle-city-chart/vehicle-city-chart.component';
 import { VehicleCityChartRadarComponent } from './charts/vehicle-city-chart-radar/vehicle-city-chart-radar.component';
+import {JournalEventsComponent} from "./shared/components/journal-events/journal-events.component";
 
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
@@ -39,7 +40,8 @@ const INTERCEPTOR_PROVIDER: Provider = {
     LoginLayoutComponent,
     DashboardComponent,
     MapComponent,
-    MapVehiclesComponent
+    MapVehiclesComponent,
+    JournalEventsComponent
 
   ],
     imports: [

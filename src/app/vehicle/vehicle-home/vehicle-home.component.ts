@@ -72,7 +72,7 @@ export class VehicleHomeComponent implements OnInit {
         this.totalPages = Math.ceil(data.totalCount / this.pageSize);
         this.isLoaded = true;
         this.fillRange();
-        this.alertService.success('Title', 'Данные обновились','' );
+        //this.alertService.success('Title', 'Данные обновились','' );
       });
   }
 

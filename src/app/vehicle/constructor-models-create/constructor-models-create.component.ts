@@ -9,6 +9,7 @@ import {
   UserMasterDataFieldCommand
 } from "../../models/userMasterDataDto";
 import {Router} from "@angular/router";
+import {AlertService} from "../../services/alert.service";
 
 
 @Component({
@@ -27,7 +28,8 @@ export class ConstructorModelsCreateComponent implements OnInit {
     public formBuilder: FormBuilder,
     private userMasterDataService: UserMasterDataService,
     private vehicleModelService: VehicleModelService,
-    private router: Router) {
+    private router: Router,
+    private alertService: AlertService) {
     this.createForm();
     this.addField();
 
@@ -98,6 +100,7 @@ export class ConstructorModelsCreateComponent implements OnInit {
     }
 
     this.userMasterDataService.create(command).subscribe(data=>{
+      this.alertService.success('Title', `Запись по справочнику ${ this.form.controls['name'].value} обновилась`,'' );
       this.router.navigate(['/vehicle/constructor-models']);
     });
 

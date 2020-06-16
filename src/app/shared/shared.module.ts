@@ -21,6 +21,7 @@ import { ChartsModule } from 'ng2-charts';
 import {PreloaderComponent} from "./components/preloader/preloader.component";
 import {VehicleCityChartComponent} from "../charts/vehicle-city-chart/vehicle-city-chart.component";
 import {VehicleCityChartRadarComponent} from "../charts/vehicle-city-chart-radar/vehicle-city-chart-radar.component";
+import {EventsService} from "../services/events.service";
 
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
@@ -65,6 +66,7 @@ const INTERCEPTOR_PROVIDER: Provider = {
     INTERCEPTOR_PROVIDER,
     HttpServiceService,
     AlertService,
+    //EventsService,
     JwtHelper,
     AuthGuard
   ],
