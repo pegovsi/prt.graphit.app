@@ -6,7 +6,7 @@ import {CollectionViewModel, UsersCollectionViewModel} from "../models/vehiclesC
 import {User} from "../models/user";
 import {environment} from "../../environments/environment";
 import {catchError, retry} from "rxjs/operators";
-import {VehicleModelDto} from "../models/vehicleModelDto";
+import {VehicleModelDto, VehicleModelPositionDto} from "../models/vehicleModelDto";
 
 @Injectable({providedIn: 'root'})
 export class VehicleModelService {
@@ -42,8 +42,16 @@ export class VehicleModelService {
       );
   }
 
-
-
+  //model-positions/id
+  getModelPositions(id:string):Observable<VehicleModelPositionDto[]>{
+    return this.client.get<VehicleModelPositionDto[]>(
+      `${environment.api}/api/v1/vehicle-model/positions/${id}`,
+      this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
+  }
 
   private handleError(error: HttpErrorResponse) {
     let errorMessage = '';

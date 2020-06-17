@@ -12,18 +12,23 @@ import {MilitaryFormationDto} from "../../models/militaryFormationDto";
   styleUrls: ['./military-formation.component.scss']
 })
 export class MilitaryFormationComponent implements OnInit {
-
+  isLoaded:boolean = true;
   data: MilitaryFormationDto[];
   totalCount: number;
-  totalPages: Array<number>;
-  currentPage:number;
+  pages: Array<number>;
+  totalPages:number = 0;
+  pageSize:number = 12;
+  currentPage:number  = 1;
+  currentMinRange:number = 1;
+  currentMaxRange:number = 10;
 
   constructor(private httpClient: MilitaryFormationService,
   private alertService: AlertService,
   private modalPubSubService: ModalPubSubService) { }
 
   ngOnInit(): void {
-    this.getData(1, 12);
+    this.isLoaded = false;
+    this.getData(1, this.pageSize);
   }
   getData(pageIndex:number, pageSize:number){
     let command: PageContext<MilitaryFormationPageFilter> = {
@@ -40,30 +45,82 @@ export class MilitaryFormationComponent implements OnInit {
       .subscribe(data => {
         this.data = data.data;
         this.totalCount = data.totalCount;
-
-        this.setPages(data.totalCount);
-
+        this.totalPages = Math.ceil(data.totalCount / this.pageSize);
+        this.isLoaded = true;
+        this.fillRange();
         this.alertService.success('Title', 'Данные обновились','' );
       });
   }
-  setPages(totalCount:number){
-    let count: number;
+  fillRange(){
+    let step: number = this.totalPages> 9 ? 9 : this.totalPages - 1;
 
-    if(totalCount > 10){
-      count = 10;
-    }else {
-      count = totalCount;
+    if(this.currentPage === this.currentMinRange){
+      this.pages = new Array<number>(step);
+      let indx:number = this.currentMinRange - 1;
+
+      for (let i = 0; i <= step; i++){
+        indx = indx + 1;
+        this.pages[i] = indx;
+      }
     }
 
-    this.totalPages = new Array<number>(count);
-    for (let i=0; i<=count; i++){
-      this.totalPages[i] = (i+1);
+    if(this.currentPage > this.currentMaxRange){
+
+      this.currentMinRange = this.currentMaxRange + 1;
+      this.currentMaxRange = this.currentMinRange + 9;
+      this.pages = [];
+
+      let indx:number = this.currentMinRange - 1;
+
+      if(this.currentMaxRange >= this.totalPages){
+        step = this.totalPages - (this.currentMinRange);
+      }
+
+      this.pages = new Array<number>(step);
+      for (let i = 0; i <= step; i++){
+        indx = indx + 1;
+        this.pages[i] = indx;
+      }
+    }
+
+    if(this.currentPage < this.currentMinRange){
+
+      this.currentMaxRange = this.currentMinRange - 1;
+      this.currentMinRange = this.currentMaxRange - 9;
+
+      this.pages = [];
+
+      let indx:number = this.currentMinRange - 1;
+
+      if(this.currentMaxRange >= this.totalPages){
+        step = this.totalPages - (this.currentMinRange);
+      }
+
+      this.pages = new Array<number>(step);
+      for (let i = 0; i <= step; i++){
+        indx = indx + 1;
+        this.pages[i] = indx;
+      }
     }
   }
 
   onCurrentPage(event){
-    this.currentPage = event;
-    this.getData(event, 12);
+    this.currentPage = Number(event);
+    this.getData(this.currentPage, this.pageSize);
+  }
+
+  onBack(){
+    if(this.currentPage !==1){
+      this.currentPage = this.currentPage - 1;
+      this.getData(this.currentPage, this.pageSize);
+    }
+  }
+
+  onNext(){
+    if(this.currentPage !==this.totalCount){
+      this.currentPage = this.currentPage + 1;
+      this.getData(this.currentPage, this.pageSize);
+    }
   }
 
   showModal(event) {

@@ -33,6 +33,15 @@ export class MilitaryFormationService {
         catchError(this.handleError)
       );
   }
+  getAll():Observable<MilitaryFormationDto[]>{
+    return this.client.get<MilitaryFormationDto[]>(
+      `${environment.api}/api/v1/military-formation/`,
+      this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
+  }
 
 
 

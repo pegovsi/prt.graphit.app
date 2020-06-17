@@ -51,3 +51,18 @@ export interface MilitaryPosition {
   shortName: string,
   activeStatus: ActiveStatusDto
 }
+
+export interface AddCrewCommand {
+  orderNumber:string;
+  orderDateStart: Date;
+  orderDateFinish:Date;
+  typesMilitaryOrderId:string;
+  vehicleId:string;
+  militaryFormationId:string;
+  crewPositions: CrewPositionCommand[]
+}
+
+export interface CrewPositionCommand {
+  militaryPositionId: string;
+  accountId:string;
+}

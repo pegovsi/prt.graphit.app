@@ -34,6 +34,16 @@ export class UsersService {
       );
   }
 
+  getAll():Observable<User[]>{
+    return this.client.get<User[]>(
+      `${environment.api}/api/v1/users`,
+      this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
+  }
+
 
 
 

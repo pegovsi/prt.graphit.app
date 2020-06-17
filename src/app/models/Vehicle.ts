@@ -93,3 +93,8 @@ export interface Chassis {
   name:string;
   manufacturerId:string;
 }
+
+export interface VehicleShortDto {
+  id:string;
+  name:string;
+}

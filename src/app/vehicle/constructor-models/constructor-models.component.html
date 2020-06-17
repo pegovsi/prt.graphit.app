@@ -54,12 +54,6 @@
                 *ngFor="let count of pages">
               <button class="page-link" (click)="onCurrentPage(count)">{{count}}</button>
             </li>
-            <!--            <li class="paginate_button page-item next" *ngIf="totalCount>10">-->
-            <!--              <button class="page-link" >...</button>-->
-            <!--            </li>-->
-            <!--            <li class="paginate_button page-item next" *ngIf="totalCount>10">-->
-            <!--              <button class="page-link" >{{totalCount}}</button>-->
-            <!--            </li>-->
             <li class="paginate_button page-item next"
                 [attr.disabled]="currentPage === totalPages"
                 [ngClass]="currentPage===totalPages? 'disabled':''">

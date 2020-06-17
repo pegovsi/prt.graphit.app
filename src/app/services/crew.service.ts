@@ -8,7 +8,8 @@ import {User} from "../models/user";
 import {environment} from "../../environments/environment";
 import {catchError, retry} from "rxjs/operators";
 import {VehicleModelDto} from "../models/vehicleModelDto";
-import {CrewDto} from "../models/crewDto";
+import {AddCrewCommand, CrewDto} from "../models/crewDto";
+import {Result} from "../models/Result";
 
 @Injectable({providedIn: 'root'})
 export class CrewService {
@@ -27,6 +28,27 @@ export class CrewService {
     return this.client.post<UsersCollectionViewModel<CrewDto[]>>(
       `${environment.api}/api/v1/crew/page`,
       JSON.stringify(command),
+      this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
+  }
+
+  AddCrew(command: AddCrewCommand): Observable<Result<string>>{
+    return this.client.post<Result<string>>(
+      `${environment.api}/api/v1/crew`,
+      JSON.stringify(command),
+      this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
+  }
+
+  getCrewByVehicle(id:string):Observable<CrewDto[]>{
+    return this.client.get<CrewDto[]>(
+      `${environment.api}/api/v1/crew/vehicle/${id}`,
       this.httpOptions)
       .pipe(
         retry(1),

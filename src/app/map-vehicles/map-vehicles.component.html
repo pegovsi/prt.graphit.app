@@ -12,48 +12,67 @@
         <div class="col-lg-12">
           <div class="card-body" style="padding: 0px;">
             <div class="table-responsive">
-              <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                <tr>
-                  <th>Наименование</th>
-                  <th>Номер шасси</th>
-                  <th>Номер производителя</th>
-                  <th>Номер регистрации</th>
-                  <th>Город</th>
-                  <th>Дивизия</th>
-                  <th>Состояние</th>
-                </tr>
-                </thead>
-                <!--<tfoot>
-                <tr>
-                  <th>Наименование</th>
-                  <th>Номер шасси</th>
-                  <th>Номер производителя</th>
-                  <th>Номер регистрации</th>
-                  <th>Город</th>
-                  <th>Дивизия</th>
-                  <th>Состояние</th>
-                </tr>
-                </tfoot>-->
-                <tbody>
-                <tr  *ngFor="let vehicle of vehicles">
-                  <td>
-                    <a [routerLink]="['/vehicle', 'vehicle',vehicle.id, 'edit']">{{vehicle.name}}</a>
-                  </td>
-                  <td>{{vehicle.vehicleNomberChassis}}</td>
-                  <td>{{vehicle.vehicleNomberFactory}}</td>
-                  <td>{{vehicle.vehicleNomberRegister}}</td>
-                  <td>{{vehicle.city.name}}</td>
-                  <td>{{vehicle.division.name}}</td>
-                  <td>
+              <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0" *ngIf="isLoaded;else noContent">
+              <thead>
+              <tr>
+                <th>Наименование</th>
+                <th>Номер шасси</th>
+                <th>Номер производителя</th>
+                <th>Номер регистрации</th>
+                <th>Город</th>
+                <th>Дивизия</th>
+                <th>Состояние</th>
+              </tr>
+              </thead>
+
+              <tbody>
+              <tr  *ngFor="let vehicle of vehicles">
+                <td>
+                  <a [routerLink]="['/vehicle', 'vehicle',vehicle.id, 'edit']">{{vehicle.name}}</a>
+                </td>
+                <td>{{vehicle.vehicleNomberChassis}}</td>
+                <td>{{vehicle.vehicleNomberFactory}}</td>
+                <td>{{vehicle.vehicleNomberRegister}}</td>
+                <td>{{vehicle.city.name}}</td>
+                <td>{{vehicle.division.name}}</td>
+                <td>
             <span [ngStyle]="{'color': vehicle.condition.name==='Исправен'?'#59d749':'#D61B1B'}">
               {{vehicle.condition.name}}
             </span>
-                  </td>
-                </tr>
-                </tbody>
-              </table>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+              <ng-template #noContent>
+                <app-preloader></app-preloader>
+              </ng-template>
+
             </div>
+
+            <div class="row">
+              <div class="col-sm-12 col-md-5"></div>
+              <div class="col-sm-12 col-md-7">
+                <div class="dataTables_paginate paging_simple_numbers">
+                  <ul class="pagination">
+                    <li class="paginate_button page-item previous" [attr.disabled]="currentPage === 1"
+                        [ngClass]="currentPage===1? 'disabled':''">
+                      <button class="page-link" (click)="onBack()">Назад</button>
+                    </li>
+                    <li class="paginate_button page-item"
+                        [class.active]="currentPage == count"
+                        *ngFor="let count of pages">
+                      <button class="page-link" (click)="onCurrentPage(count)">{{count}}</button>
+                    </li>
+                    <li class="paginate_button page-item next"
+                        [attr.disabled]="currentPage === totalPages"
+                        [ngClass]="currentPage===totalPages? 'disabled':''">
+                      <button class="page-link" (click)="onNext()">Вперёд</button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>

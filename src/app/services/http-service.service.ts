@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Vehicle} from "../models/Vehicle";
+import {Vehicle, VehicleShortDto} from "../models/Vehicle";
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import {SearchVehicleByNameCommand} from "../models/SearchVehicleByNameCommand";
@@ -93,6 +93,17 @@ export class HttpServiceService {
           retry(1),
           catchError(this.handleError)
         );
+  }
+
+  //select
+  getVehiclesForChoose(): Observable<VehicleShortDto[]> {
+    return this.client.get<VehicleShortDto[]>(
+      `${environment.api}/api/v1/vehicles/select`,
+      this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      );
   }
 
   // Error handling

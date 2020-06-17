@@ -8,6 +8,8 @@ import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angul
 import {UpdateVehicleCommand, UpdateVehicleField} from "../../models/UpdateVehicleCommand";
 import {UserMasterDataDto, UserMasterDataFieldDto} from "../../models/userMasterDataDto";
 import {AlertService} from "../../services/alert.service";
+import {CrewService} from "../../services/crew.service";
+import {CrewDto} from "../../models/crewDto";
 
 @Component({
   selector: 'app-vehicle-details',
@@ -22,19 +24,30 @@ export class VehicleDetailsComponent implements OnInit {
   imageMain:string = 'assets/backgr.jpg';
   form: FormGroup;
   userMasterData: UserMasterDataDto[]=[];
+  _vehicleId:string;
+  crews: CrewDto[] = [];
 
   constructor(
     public formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private alertService: AlertService,
-    private httpClient: HttpServiceService) { }
+    private httpClient: HttpServiceService,
+    private crewService: CrewService) { }
 
   ngOnInit(): void {
     this.vehicle$ = this.route.params
       .pipe(switchMap((params: Params) => {
+        this._vehicleId = params['id'];
+
+        this.crewService.getCrewByVehicle(params['id'])
+          .subscribe(data=>{
+            this.crews = data;
+          });
+
         return this.httpClient.getVehicleById(params['id']);
       }));
+
 
     this.createForm();
 

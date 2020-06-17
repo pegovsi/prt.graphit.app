@@ -6,10 +6,10 @@
 <div class="card shadow mb-4">
   <div class="card-header py-3">
     <!--<h6 class="m-0 font-weight-bold text-primary">+ Добавить</h6>-->
-    <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">
-      <i class="fas fa-fw fa-plus-circle"></i>
-      <span>Добавить</span>
-    </a>
+<!--    <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">-->
+<!--      <i class="fas fa-fw fa-plus-circle"></i>-->
+<!--      <span>Добавить</span>-->
+<!--    </a>-->
   </div>
   <div class="card-body">
     <div class="table-responsive">
@@ -25,22 +25,11 @@
           <th>Состояние</th>
         </tr>
         </thead>
-        <!--<tfoot>
-        <tr>
-          <th>Наименование</th>
-          <th>Номер шасси</th>
-          <th>Номер производителя</th>
-          <th>Номер регистрации</th>
-          <th>Город</th>
-          <th>Дивизия</th>
-          <th>Состояние</th>
-        </tr>
-        </tfoot>-->
+
         <tbody>
         <tr  *ngFor="let vehicle of vehicles">
           <td>
             <a [routerLink]="['/vehicle', 'vehicle',vehicle.id, 'edit']">{{vehicle.name}}</a>
-<!--            <span (click)="showModal(vehicle.id)" >{{vehicle.name}}</span>-->
           </td>
           <td>{{vehicle.vehicleNomberChassis}}</td>
           <td>{{vehicle.vehicleNomberFactory}}</td>
@@ -59,6 +48,7 @@
         <app-preloader></app-preloader>
       </ng-template>
     </div>
+
     <div class="row">
       <div class="col-sm-12 col-md-5"></div>
       <div class="col-sm-12 col-md-7">
@@ -73,12 +63,6 @@
                 *ngFor="let count of pages">
               <button class="page-link" (click)="onCurrentPage(count)">{{count}}</button>
             </li>
-<!--            <li class="paginate_button page-item next" *ngIf="totalCount>10">-->
-<!--              <button class="page-link" >...</button>-->
-<!--            </li>-->
-<!--            <li class="paginate_button page-item next" *ngIf="totalCount>10">-->
-<!--              <button class="page-link" >{{totalCount}}</button>-->
-<!--            </li>-->
             <li class="paginate_button page-item next"
                 [attr.disabled]="currentPage === totalPages"
                 [ngClass]="currentPage===totalPages? 'disabled':''">
@@ -88,6 +72,7 @@
         </div>
       </div>
   </div>
+
 </div>
 </div>
 

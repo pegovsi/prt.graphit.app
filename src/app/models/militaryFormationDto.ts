@@ -9,3 +9,8 @@ export interface MilitaryFormationDto {
   levelManagementId: string,
   levelManagement: LevelManagement,
 }
+
+export interface TypeOrder {
+  id:string;
+  name:string
+}

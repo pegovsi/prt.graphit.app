@@ -53,10 +53,10 @@ export class ConstructorModelsComponent implements OnInit {
   }
 
   fillRange(){
-    let step: number = 9;
+    let step: number = this.totalPages> 9 ? 9 : this.totalPages - 1;
 
     if(this.currentPage === this.currentMinRange){
-      this.pages = new Array<number>(9);
+      this.pages = new Array<number>(step);
       let indx:number = this.currentMinRange - 1;
 
       for (let i = 0; i <= step; i++){

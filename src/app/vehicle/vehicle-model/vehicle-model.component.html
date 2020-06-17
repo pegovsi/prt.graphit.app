@@ -6,14 +6,14 @@
 <div class="card shadow mb-4">
   <div class="card-header py-3">
     <!--<h6 class="m-0 font-weight-bold text-primary">+ Добавить</h6>-->
-    <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">
-      <i class="fas fa-fw fa-plus-circle"></i>
-      <span>Добавить</span>
-    </a>
+<!--    <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">-->
+<!--      <i class="fas fa-fw fa-plus-circle"></i>-->
+<!--      <span>Добавить</span>-->
+<!--    </a>-->
   </div>
   <div class="card-body">
     <div class="table-responsive">
-      <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+      <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0" *ngIf="isLoaded;else noContent">
         <thead>
         <tr>
           <th>Наименование</th>
@@ -22,22 +22,11 @@
           <th>Шасси</th>
         </tr>
         </thead>
-        <!--<tfoot>
-        <tr>
-          <th>Наименование</th>
-          <th>Номер шасси</th>
-          <th>Номер производителя</th>
-          <th>Номер регистрации</th>
-          <th>Город</th>
-          <th>Дивизия</th>
-          <th>Состояние</th>
-        </tr>
-        </tfoot>-->
         <tbody>
         <tr  *ngFor="let model of models">
           <td>
-            <a [routerLink]="['/vehicle', 'vehicle',model.id, 'edit']">{{model.name}}</a>
-            <!--            <span (click)="showModal(vehicle.id)" >{{vehicle.name}}</span>-->
+<!--            <a [routerLink]="['/vehicle', 'vehicle',model.id, 'edit']">{{model.name}}</a>-->
+                        <span >{{model.name}}</span>
           </td>
           <td>{{model.shortName}}</td>
           <td>{{model.vehicleModelType.name}}</td>
@@ -45,32 +34,34 @@
         </tr>
         </tbody>
       </table>
+      <ng-template #noContent>
+        <app-preloader></app-preloader>
+      </ng-template>
     </div>
+
     <div class="row">
       <div class="col-sm-12 col-md-5"></div>
       <div class="col-sm-12 col-md-7">
         <div class="dataTables_paginate paging_simple_numbers">
           <ul class="pagination">
-            <li class="paginate_button page-item previous disabled">
-              <a routerLink="/1" class="page-link">Назад</a>
+            <li class="paginate_button page-item previous" [attr.disabled]="currentPage === 1"
+                [ngClass]="currentPage===1? 'disabled':''">
+              <button class="page-link" (click)="onBack()">Назад</button>
             </li>
             <li class="paginate_button page-item"
                 [class.active]="currentPage == count"
-                *ngFor="let count of totalPages">
+                *ngFor="let count of pages">
               <button class="page-link" (click)="onCurrentPage(count)">{{count}}</button>
             </li>
-            <li class="paginate_button page-item next" *ngIf="totalCount>10">
-              <button class="page-link" >...</button>
-            </li>
-            <li class="paginate_button page-item next" *ngIf="totalCount>10">
-              <button class="page-link" >{{totalCount}}</button>
-            </li>
-            <li class="paginate_button page-item next">
-              <a routerLink="/1" class="page-link">Вперёд</a>
+            <li class="paginate_button page-item next"
+                [attr.disabled]="currentPage === totalPages"
+                [ngClass]="currentPage===totalPages? 'disabled':''">
+              <button class="page-link" (click)="onNext()">Вперёд</button>
             </li>
           </ul>
         </div>
       </div>
     </div>
+
   </div>
 </div>

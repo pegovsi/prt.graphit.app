@@ -86,7 +86,7 @@
                     <span>Состояние:</span>
                   </div>
                   <div class="col-lg-6">
-                    <span> {{vehicle.condition.name}} </span>
+                    <span class="costom-badge"> {{vehicle.condition.name}} </span>
                   </div>
                 </div>
 
@@ -134,22 +134,17 @@
                     <thead>
                     <tr>
                       <th>№</th>
-                      <th>Дата</th>
-                      <th>Тип приказа</th>
-                      <th>Должность</th>
-                      <th>Пользователь</th>
+                      <th>Приказ</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr >
+                    <tr *ngFor="let item of crews; let i = index">
                       <td>
-                      </td>
-                      <td></td>
-                      <td>
+                        {{i + 1}}
                       </td>
                       <td>
-                      </td>
-                      <td>
+                        <a [routerLink]="['/vehicle', 'crew',item.id, 'edit']">
+                          Экипаж №{{item.orderNumber}} от {{item.orderDateStart | date:"dd.MM.yyyy"}}</a>
                       </td>
                     </tr>
                     </tbody>

@@ -16,6 +16,8 @@ import { CrewComponent } from './crew/crew.component';
 import { ConstructorModelsComponent } from './constructor-models/constructor-models.component';
 import { ConstructorModelsCreateComponent } from './constructor-models-create/constructor-models-create.component';
 import { ConstructorModelsEditComponent } from './constructor-models-edit/constructor-models-edit.component';
+import { CrewCreateComponent } from './crew-create/crew-create.component';
+import { CrewEditComponent } from './crew-edit/crew-edit.component';
 
 
 const routes: Routes =[{
@@ -26,7 +28,8 @@ const routes: Routes =[{
       {path: 'vehicles', component: VehicleHomeComponent, canActivate:[AuthGuard]},
       {path: 'vehicle/:id/edit', component: VehicleDetailsComponent, canActivate:[AuthGuard]},
       {path: 'crew', component: CrewComponent, canActivate:[AuthGuard]},
-      {path: 'crew/:id/edit', component: VehicleDetailsComponent, canActivate:[AuthGuard]},
+      {path: 'crew/:id/edit', component: CrewEditComponent, canActivate:[AuthGuard]},
+      {path: 'crew/create', component: CrewCreateComponent, canActivate:[AuthGuard]},
       {path: 'constructor-models', component: ConstructorModelsComponent, canActivate:[AuthGuard]},
       {path: 'constructor-models-create', component: ConstructorModelsCreateComponent, canActivate:[AuthGuard]},
       {path: 'constructor-models/:id/edit', component: ConstructorModelsEditComponent, canActivate:[AuthGuard]}
@@ -40,7 +43,9 @@ const routes: Routes =[{
     CrewComponent,
     ConstructorModelsComponent,
     ConstructorModelsCreateComponent,
-    ConstructorModelsEditComponent
+    ConstructorModelsEditComponent,
+    CrewCreateComponent,
+    CrewEditComponent
   ],
   imports: [
     CommonModule,
